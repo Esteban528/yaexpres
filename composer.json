@@ -1,0 +1,21 @@
+{
+    "name": "esteban/ya-express",
+    "description": "Ya express Web site",
+    "autoload": {
+        "psr-4": {
+            "Esteban\\YaExpress\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "esteban",
+            "email": "estebangonza2005@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    }
+}

@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  web:
+    image: phpyaexpres
+    volumes:
+      - ./:/var/www/html
+      - ./php-conf:/usr/local/etc/php
+    ports:
+      - 80:80
+
+  db:
+    image: mysql:5.7
+    volumes:
+      - mysqlVolume:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: users
+      MYSQL_USER: admin
+      MYSQL_PASSWORD: esteban123
+      MYSQL_ROOT_PASSWORD: este5ban9
+    ports:
+      - 3308:3306
+volumes:
+  mysqlVolume:
