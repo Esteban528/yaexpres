@@ -1,6 +1,7 @@
 <?php require 'app/app.php';
 importTemplate('header');
 ?>
+<img src="imagenes/yaExpres.jpg">
 <main class="container">
     <h1 class="display-2">Ya Express
         <small class="text-body-secondary">Trabajamos por tus sueños.</small>
