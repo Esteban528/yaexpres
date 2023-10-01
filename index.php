@@ -39,4 +39,5 @@ importTemplate('header');
 </main>
 
 
-<?php importTemplate('footer');
+<?php
+importTemplate('footer');
