@@ -3,12 +3,12 @@ require __DIR__ . '/../vendor/autoload.php';
 require __DIR__.'/misc.php';
 require __DIR__.'/config/database.php';
 
-Use App\User;
 
 // Global Functions
 $db = connectDB();
-User::setDB($db);
 
+Use App\User;
+User::setDB($db);
 
 function showFormat ($value)
 {
