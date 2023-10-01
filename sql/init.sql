@@ -1,23 +1,21 @@
-CREATE DATABASE yaexpress_crud; 
-
 USE yaexpress_crud;
+
+create table if not exists permisos (
+	id int not null auto_increment primary key,
+    nombre varchar(50) not null
+);
 
 create table if not exists usuarios (
 	id int not null auto_increment primary key,
     nombre varchar (50) not null,
     apellido varchar(50) not null,
-    email varchar(60) not null,
+    email varchar(60) not null UNIQUE,
     telefono varchar(15) not null,
     cedula varchar(15),
     password char(60) not null,
     permiso int not null,
     
     foreign key(permiso) references permisos(id)
-);
-
-create table if not exists permisos (
-	id int not null auto_increment primary key,
-    nombre varchar(50) not null
 );
 
 create table if not exists posts (
