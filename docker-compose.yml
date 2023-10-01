@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   web:
-    image: phpyaexpres
+    image: phpyaexpres:1
     volumes:
       - ./:/var/www/html
       - ./php-conf:/usr/local/etc/php
@@ -13,12 +13,13 @@ services:
     image: mysql:5.7
     volumes:
       - mysqlVolume:/var/lib/mysql
+      - ./sql/init.sql:/docker-entrypoint-initdb.d/init.sql
     environment:
       MYSQL_DATABASE: users
       MYSQL_USER: admin
       MYSQL_PASSWORD: esteban123
       MYSQL_ROOT_PASSWORD: este5ban9
     ports:
-      - 3308:3306
+      - 3306:3306
 volumes:
   mysqlVolume:
