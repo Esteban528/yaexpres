@@ -5,14 +5,18 @@ require __DIR__.'/config/database.php';
 
 
 // Global Functions
-$db = connectDB();
+// $db = connectDB();
 
-Use App\User;
-User::setDB($db);
+// Use Models\User;
+// User::setDB($db);
 
-function showFormat ($value)
+function showFormat ($value, $bool = false)
 {
   echo '<pre>';
   var_dump($value);
   echo '</pre>';
+
+  if($bool){
+    exit;
+  }
 }

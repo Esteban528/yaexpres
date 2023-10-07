@@ -1,5 +1,5 @@
 <?php
-namespace App;
+namespace Models;
 
 class User {
   protected static $db;

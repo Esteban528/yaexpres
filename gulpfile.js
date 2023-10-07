@@ -30,8 +30,8 @@ function css (done) { // Convierte el codigo fuente SCSS a CSS optimizado para e
         .pipe(plumber()) // Hace que los errores no detengan la ejecucion
         .pipe(sass())// Compilarlo
         .pipe(postcss([autoprefixer(), cssnano()])) // Esto comprime el codigo css haciendolo mas ligero
-        .pipe(sourcemaps.write('.')) //Genera el mapa para debugear el SCSS dictando su posición inicial en el código fuente
-        .pipe(dest("build/css"))// Almacenarla en el disco duro
+        // .pipe(sourcemaps.write('.')) //Genera el mapa para debugear el SCSS dictando su posición inicial en el código fuente
+        .pipe(dest("public/build/css"))// Almacenarla en el disco duro
 
     done(); // Callback que avisa a gulp cuando llegamos al final
 }
@@ -43,7 +43,7 @@ function versionWebp (done) { /* Convierte imagenes a webp */
 
     src(fileImg)
         .pipe(webp(opciones))
-        .pipe(dest('build/img'))
+        .pipe(dest('public/build/img'))
     done();
 }
 
@@ -54,7 +54,7 @@ function versionAvif (done) { /* Convierte imagenes a Avif */
 
     src(fileImg)
         .pipe(avif(opciones))
-        .pipe(dest('build/img'))
+        .pipe(dest('public/build/img'))
     done();
 }
 
@@ -64,7 +64,7 @@ function imagenes (done) { /* Optimiza las imagenes y las exporta optimizadas*/
     }
     src(fileImg)
         .pipe( cache( imagemin(opciones) ) )
-        .pipe(dest('build/img'))
+        .pipe(dest('public/build/img'))
     done();
 }
 
@@ -73,7 +73,7 @@ function javascript (done) { // Lee el JavaScript fuente y lo optimiza para el n
         .pipe(sourcemaps.init())
         .pipe(terser())
         .pipe(sourcemaps.write('.'))
-        .pipe(dest('build/js'))
+        .pipe(dest('public/build/js'))
     done();
 }
 

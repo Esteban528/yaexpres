@@ -1,10 +1,9 @@
 <?php require 'app/app.php';
 importTemplate('header');
 ?>
-<img src="imagenes/yaExpres.jpg">
+<img class="img-fluid" src="imagenes/yaExpres.jpg">
 <main class="container">
-    <h1 class="display-2">Ya Express
-        <small class="text-body-secondary">Trabajamos por tus sueños.</small>
+    <h1 class="display-2">Trading Express<small class="text-body-secondary">  Construye tu futuro.</small>
     </h1>
     <section class="container">
         <div class="card">

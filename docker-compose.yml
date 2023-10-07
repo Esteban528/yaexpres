@@ -5,10 +5,12 @@ services:
     image: phpyaexpres:1
     volumes:
       - ./:/var/www/html
-      - ./php-conf:/usr/local/etc/php
+      - ./config/php-conf:/usr/local/etc/php
+      - ./config/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+    environment:
+      APACHE_DOCUMENT_ROOT: /var/www/html/public
     ports:
       - 80:80
-
   db:
     image: mysql:5.7
     volumes:
