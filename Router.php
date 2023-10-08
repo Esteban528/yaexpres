@@ -5,9 +5,6 @@ namespace MVC;
 class Router {
     public array $getRoutes = [];
     public array $postRoutes = [];
-    public array $allowVariableRoutes = [
-        '/image'
-    ];
 
     public function __construct()
     {
@@ -28,7 +25,7 @@ class Router {
 
         $urlExplode = explode("?", $currentUrl)[0] ?? null;
 
-        if (in_array($urlExplode, $this->allowVariableRoutes)) {
+        if (!is_null($urlExplode)) {
             $currentUrl = $urlExplode;
         }
         

@@ -4,11 +4,11 @@ require __DIR__.'/misc.php';
 require __DIR__.'/config/database.php';
 
 
-// Global Functions
-// $db = connectDB();
+//Global Functions
+$db = connectDB();
 
-// Use Models\User;
-// User::setDB($db);
+Use Model\Base;
+Base::setDB($db);
 
 function showFormat ($value, $bool = false)
 {

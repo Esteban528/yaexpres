@@ -11,7 +11,7 @@
     </div>
     <div class="mb-3">
       <label for="cedula" class="form-label">Cédula de ciudadania <small class="text-body-secondary">(Opcional)</small></label>
-      <input type="number" name="cedula" class="form-control" id="cedula" aria-describedby="cedula">
+      <input type="dni" name="cedula" class="form-control" id="cedula" aria-describedby="cedula">
       <div id="emailHelp" class="form-text">Sus datos personales están seguros aquí.</div>
     </div>
 
