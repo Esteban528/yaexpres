@@ -1,9 +1,9 @@
 <?php
 namespace Models;
 
-class User {
-  protected static $db;
+class User extends Base{
   protected static $user;
+  protected static $dbTable = 'usuarios';
 
   protected static $dbCol = [
     "id", "nombre", "apellido", "email", "telefono", "cedula", "password", "permiso" 
@@ -18,7 +18,6 @@ class User {
   public $password;
   public $permiso;
         
-  public $errores = [];
 
   public function __construct($args = [])
   {
@@ -32,71 +31,6 @@ class User {
     $this -> permiso  = $args['permiso'] ?? '';
 
     $this->validate();
-  }
-
-  public function save () {
-    $properties = $this->sanitize();
-    $query = " INSERT INTO usuarios (";
-    $query .= join(", ", array_keys($properties));
-    $query .= " ) VALUES ( '";
-    $query .= join("', '", array_values($properties));
-    $query .= "') ";
-
-    $result = self::$db->query($query);
-    return $result;
-  }
-
-  public function validate() {
-    $this->errores = [];
-  
-    if (!$this->nombre) {
-      $errores[] = "Nombre no válido";
-    } 
-    if (!$this->apellido) {
-      $errores[] = "Apellido no válido";
-    } 
-    if (!$this-> email) {
-      $errores[] = "Email incorrecto";
-    }
-    if (!$this->telefono) {
-      $errores[] = "Telefono no válido";
-    }
-    if (!$this->cedula) {
-      $errores[] = "Cedula incoherente";
-    }
-    if (!$this->password) {
-      $errores[] = "Password no válido";
-    }
-    if (!$this->telefono) {
-      $errores[] = "Telefono no válido";
-    }
-  }
-
-  public function attributes () {
-    $cols = [];
-    foreach(self::$dbCol as $column){
-      if ($column === 'id') continue;
-      $cols[$column] = $this->$column;
-    }
-    return $cols;
-  }
-
-  public function sanitize() {
-    $attributes = $this->attributes();
-    $sanitiy = [];
-
-    foreach ($attributes as $key => $value) {
-      $sanitiy[$key] = self::$db->escape_string($value);
-    }
-
-    return $sanitiy;
-  }
-
-
-  # STATIC 
-  public static function setDB($DB)
-  {
-    self::$db = $DB;
   }
 
   public static function auth () : bool {
