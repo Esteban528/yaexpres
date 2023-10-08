@@ -1,3 +1,4 @@
+
 <?php
 require_once __DIR__ . '/../vendor/autoload.php';
 require_once __DIR__ . '/../includes/app.php';
@@ -8,7 +9,8 @@ use Controller\PageController;
 $router = new Router();
 
 $router->addGet("/", [PageController::class, 'index']);
+$router->addGet("/css.css", [PageController::class, 'css']);
+$router->addGet("/image", [PageController::class, 'image']);
+$router->addGet("/error", [PageController::class, 'error']);
 
 $router->checkRoutes();
-
-importTemplate('header');
