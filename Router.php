@@ -5,6 +5,14 @@ namespace MVC;
 class Router {
     public array $getRoutes = [];
     public array $postRoutes = [];
+    public array $allowVariableRoutes = [
+        '/image'
+    ];
+
+    public function __construct()
+    {
+        
+    }
 
     public function addGet($url, $fn) {
         $this->getRoutes[$url] = $fn;
@@ -18,6 +26,12 @@ class Router {
         $currentUrl = $_SERVER['REQUEST_URI'] ?? '/';
         $method = $_SERVER['REQUEST_METHOD'];
 
+        $urlExplode = explode("?", $currentUrl)[0] ?? null;
+
+        if (in_array($urlExplode, $this->allowVariableRoutes)) {
+            $currentUrl = $urlExplode;
+        }
+        
         if($method === 'GET') {
             $fn = $this->getRoutes[$currentUrl] ?? null;
         }else{ 
@@ -26,8 +40,9 @@ class Router {
 
         if ($fn) {
             call_user_func($fn, $this);
-        }else {
-            echo "Página no encontrada";
+        }
+        else {
+            header('Location: /error');
         }
     }
     
