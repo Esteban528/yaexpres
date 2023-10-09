@@ -1,6 +1,6 @@
 <?php
 function connectDB () : mysqli {
-	$dbHost = '172.21.0.2'; 
+	$dbHost = 'db'; 
 	$dbPort = '3306'; // El puerto predeterminado de MySQL.
 	$dbUsername = 'root';
 	$dbPassword = 'este5ban9';

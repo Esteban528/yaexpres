@@ -10,14 +10,28 @@ class PageController {
         ]);
     }
 
-    public static function css(Router $router) {
-        //  fopen(__DIR__.'/../public/build/css/app.css');
+    public static function files(Router $router) {
+        //fopen(__DIR__.'/../public/build/css/app.css');
         // readfile(__DIR__.'/../public/build/css/app.css');
-        header('Content-Type: text/css');
+        $headers=[
+            'js' => 'javascript'
+        ];
+        
+        $type = $_GET['type'] ?? '';
+        $file = $_GET['file'] ?? '';
+        $route = __DIR__.'/../public/build/'.$type.'/'.$file;
 
-        $contenido = file_get_contents(__DIR__.'/../public/build/css/app.css');
-        echo $contenido;
+        if (file_exists($route)) {
+            $header = $headers[$type] ?? null;
+            $header = is_null($header) ? $type : $header;
+            
+            header('Content-Type: text/'.$type);
+            $contenido = file_get_contents($route);
+            echo $contenido;
+        }
     }
+
+    
 
     public static function error(Router $router) {
         $router->render('pages/error', [

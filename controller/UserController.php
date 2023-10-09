@@ -7,8 +7,16 @@ use Model\User;
 class UserController {
     
     public static function login(Router $router) {
+
+        if ($_SERVER['REQUEST_METHOD']==="POST"){
+            $loginData = $_POST['login'];
+            
+            
+        }
+
         $router->render('user/login', [
-            'content' => ""
+            'email' => $_POST['login']['email'] ?? '',
+            'password' => $_POST['login']['password'] ?? '',
         ]);
     }
     

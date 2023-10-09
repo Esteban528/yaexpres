@@ -6,8 +6,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>YaExpres - Inicio</title>
-    <link rel="stylesheet" type="text/css" href="/css.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+    <link rel="stylesheet" type="text/css" href="/file?type=css&file=bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="/file?type=css&file=app.css">
+    
 </head>
 
 <body>

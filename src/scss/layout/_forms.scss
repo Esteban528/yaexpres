@@ -1,0 +1,11 @@
+@use 'base/variables' as v;
+
+.form-container {
+    background-color: v.$form_color;
+    padding: 1rem 2rem;
+    border-radius: 2rem;
+}
+
+.form-element {
+    margin-top: 1rem;
+}

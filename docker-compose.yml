@@ -11,6 +11,8 @@ services:
       APACHE_DOCUMENT_ROOT: /var/www/html/public
     ports:
       - 80:80
+    networks:
+      - mynetwork
   db:
     image: mysql:5.7
     volumes:
@@ -21,7 +23,14 @@ services:
       MYSQL_USER: admin
       MYSQL_PASSWORD: esteban123
       MYSQL_ROOT_PASSWORD: este5ban9
+    networks:
+      - mynetwork
     ports:
       - 3306:3306
+
+networks:
+  mynetwork:
+
 volumes:
   mysqlVolume:
+

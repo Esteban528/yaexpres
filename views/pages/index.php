@@ -1,20 +1,8 @@
-<img class="img-fluid" src="image?image=yaExpres.jpg">
+<img class="img-fluid" src="image?image=yaExpres.png">
 <main class="container">
     <h1 class="display-2">Trading Express<small class="text-body-secondary">  Construye tu futuro.</small>
     </h1>
-    <section class="container">
-        <div class="card">
-            <div class="card-header">
-                Noticias
-            </div>
-            <div class="card-body">
-                <blockquote class="blockquote mb-0">
-                    <p>YaExpres estará disponible muy pronto.</p>
-                    <footer class="blockquote-footer">Equipo de desarrollo <cite title="Source Title">PinarSoft</cite></footer>
-                </blockquote>
-            </div>
-        </div>
-    </section>
+    
 
     <section class="container">
 
