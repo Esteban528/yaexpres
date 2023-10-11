@@ -12,7 +12,7 @@
       </div>
       <div class="mb-3 form-element">
         <label for="cedula" class="form-label">Cédula de ciudadania <small class="text-body-secondary">(Opcional)</small></label>
-        <input name="cedula" class="form-control if-lenght-10" id="cedula" aria-describedby="cedula">
+        <input name="cedula" class="form-control" id="cedula" aria-describedby="cedula">
         <div id="emailHelp" class="text-light form-text">Sus datos personales están seguros aquí.</div>
       </div>
 
