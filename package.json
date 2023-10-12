@@ -26,6 +26,7 @@
   },
   "dependencies": {
     "bootstrap": "^5.3.2",
+    "bootstrap-icons": "^1.11.1",
     "gulp-terser-js": "^5.2.2"
   }
 }
