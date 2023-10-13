@@ -1,4 +1,3 @@
-import { Modal } from "bootstrap";
 document.addEventListener('DOMContentLoaded', function (){
     initApp();
 }); 
@@ -47,63 +46,52 @@ function validateRegisterForm(){
                     validateEmail(fakeEvent)
                     //setValidElement(element, false)
                 }
+                element.classList.forEach(className => {
+                    if (className == 'is-valid'){
+                        elements[i][1] = true;
+                    }   
+                });
             }
             for(let i=0; i < elements.length; i++){
                 const [element, bool ] = elements[i];
 
                 if(!bool){
-                    break;
-                }
-                if (i==elements.length-1){
-                    form.classList.add("was-validated");
-                    const modal = document.createElement("div");
-
-                    const text_nombre = name.value;
-                    const text_apellido = apellido.value;
-                    const text_telefono = telefono.value;
-                    const text_email = email.value;
-                    const text_password = password.value;
-                    const text_cedula = cedula.value;
-
-
-                    modal.innerHTML = `
-                    <!-- Vertically centered modal -->
-                    <div class="modal" tabindex="-1">
-                        <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                            <h5 class="modal-title">Fomulario de registro</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
-                            </div>
-                            <div class="modal-body">
-                            <ul>
-                                <li>${text_nombre}</li>
-                                <li>${text_apellido}</li>
-                                <li>${text_telefono}</li>
-                                <li>${text_email}</li>
-                                <li>${text_password}</li>
-                                <li>${text_cedula}</li>
-                            </ul>
-                            </div>
-                            <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-                            <button type="button" class="btn btn-primary">Registrarse</button>
-                            </div>
-                        </div>
-                        </div>
-                    </div>
-                    `
-                    form.appendChild(modal);
-                    const myModal = new bootstrap.Modal(document.getElementById('exampleModal'), {
-                        keyboard: false
-                    });
-                    myModal.show();
-                }
-                
+                    return;
+                }               
             }
-        
 
-        //
+            form.classList.add("was-validated");
+            const modalBody = document.querySelector("#modal-bodyRegster");
+            const modalInfo = document.createElement("div");
+
+            const text_nombre = name.value;
+            const text_apellido = apellido.value;
+            const text_telefono = telefono.value;
+            const text_email = email.value;
+            const text_password = password.value;
+            const text_cedula = cedula.value ?? "No tiene";
+            
+            modalBody.innerHTML = '';
+
+            modalInfo.innerHTML = `
+                
+                <ul class="list-group">
+                    <li class="list-group-item"><b>Nombre:</b> ${text_nombre} ${text_apellido}</li>
+                    <li class="list-group-item"><b>Telefono:</b> ${text_telefono}</li>
+                    <li class="list-group-item"><b>Correo electrónico:</b> ${text_email}</li>
+                    <li class="list-group-item"><b>Cédula de ciudadanía:</b> ${text_cedula == '' ? 'No tiene' : text_cedula}</li>
+                </ul>
+            `//<li>Contraseña: ${text_password}</li>
+            modalBody.appendChild(modalInfo);
+
+            const myModal = new bootstrap.Modal(document.getElementById('modalFactory'), null)
+            myModal.show();
+
+            const buttonSubmit = document.getElementById("register-button-Confirm");
+            buttonSubmit.addEventListener("click", event => {
+                form.submit();
+            });
+            
     }, false);
 
   
@@ -187,7 +175,7 @@ function validateEmail(event) {
 
 function lenghtChecker() {
     const className='if-lenght'
-    const class_list = [3, 8, 10]
+    const class_list = [3, 8, 10];
 
     class_list.forEach(value => {
         const classElement = "."+className+"-"+value;

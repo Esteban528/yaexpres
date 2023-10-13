@@ -10,8 +10,6 @@ class UserController {
 
         if ($_SERVER['REQUEST_METHOD']==="POST"){
             $loginData = $_POST['login'];
-            
-            
         }
 
         $router->render('user/login', [
@@ -21,8 +19,16 @@ class UserController {
     }
     
     public static function register(Router $router) {
+        $userInfo = [];
+        if ($_SERVER['REQUEST_METHOD']==="POST"){           
+            $userInfo = ($_POST["user"]);
+            $user = new User($userInfo);
+            $user ->create();
+        }
+
         $router->render('user/register', [
-            'content' => ""
+            'content' => "",
+            'user' => $userInfo,
         ]);
     }
 }
