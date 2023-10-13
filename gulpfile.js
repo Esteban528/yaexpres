@@ -70,7 +70,7 @@ function imagenes (done) { /* Optimiza las imagenes y las exporta optimizadas*/
 
 function javascript (done) { // Lee el JavaScript fuente y lo optimiza para el navegador
     src(fileJS)
-        .pipe(terser())
+        // .pipe(terser())
         .pipe(dest('public/build/js'))
     done();
 }

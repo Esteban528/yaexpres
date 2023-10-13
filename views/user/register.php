@@ -1,4 +1,4 @@
-<main class="container-md ">
+<div class="container-md ">
   <h1 class="display-2">Registro</h1>
 
   <div class="form-container text-light bg-opacity-25">
@@ -45,10 +45,12 @@
 
         <label for="inputPassword" class="col-form-label">Contraseña</label>
         <div class="input-group mb-3">
-          <input type="password" id="inputPassword" class="form-control if-lenght-8" aria-describedby="passwordHelpInline">
           <button class="btn btn-outline-secondary" type="button" id="form-button-showPassword">
             <i class="bi bi-eye"></i>
           </button>
+
+          <input type="password" id="inputPassword" class="form-control if-lenght-8" aria-describedby="passwordHelpInline">
+          
         </div>
         <div class="col-auto">
           
@@ -60,4 +62,4 @@
 
   </div>
 
-  <main>
+</div>
