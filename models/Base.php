@@ -34,8 +34,11 @@ class Base
         $query .= join("', '", array_values($attributes));
         $query .= " ') ";
         
-        $result = self::$db->query($query);
-        return $result;
+        if (!empty($error)){
+            $result = self::$db->query($query);
+        }
+        
+        return $result ?? null;
     }
 
     public function delete () {

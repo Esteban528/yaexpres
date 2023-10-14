@@ -1,0 +1,8 @@
+@use 'base/variables' as v;
+// footer {
+//     position: absolute;
+// }
+
+header {
+    background-color: v.$header_color;
+}

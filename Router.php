@@ -47,6 +47,17 @@ class Router {
         foreach ($datos as $key => $value) {
             $$key = $value;
         }
+        
+        $msg = isset($msg) ? $msg : null;
+        
+        if(is_null($msg)) {
+            $msg = [];
+            $msg_id = $_GET['msg'] ?? null;
+            
+            if (!is_null($msg_id)) {
+                $msg = Misc::$msg[intval($msg_id)];
+            }
+        }        
 
         ob_start(); 
         include_once __DIR__ . "/views/$view.php";

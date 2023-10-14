@@ -5,8 +5,11 @@ use MVC\Router;
 
 class PageController {
     public static function index(Router $router) : void {
+        
         $router->render('pages/index', [
-            'title' => "YaExpres"
+            'title' => "YaExpres",
+            
+            'actual' => "home",
         ]);
     }
 

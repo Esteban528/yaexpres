@@ -1,4 +1,4 @@
-<?php header('Content-Type: text/html') ?>
+<?php header('Content-Type: text/html'); ?>
 <!DOCTYPE html>
 <html lang="es">
 
@@ -13,19 +13,25 @@
 
 <body>
     <header>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <nav class="navbar nav nav-underline navbar-expand-lg">
             <div class="container-fluid">
-                <a class="navbar-brand" href="/">YaExpres</a>
+                <a class="navbar-brand" href="/"> 
+                <img class="brand-logo" src="image?image=logo-min.jpeg" alt="brand-logo">    
+                YaExpres</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Inicio</a>
+                            <a class="nav-link <?php $n='home'; 
+                            echo $actual==$n? 'active': '' ?>" 
+                            aria-current="page" href="/">Inicio</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/login">Iniciar Sesion</a>
+                            <a class="nav-link <?php $n='login'; 
+                            echo $actual==$n? 'active': '' ?>" 
+                            href="/login">Iniciar Sesion</a>
                         </li>
                     </ul>
                     <span class="navbar-text">

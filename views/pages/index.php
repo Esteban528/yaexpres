@@ -1,5 +1,5 @@
-<img class="img-fluid" src="image?image=yaExpres.png">
 <main class="container">
+    <img class="img-fluid" src="image?image=yaExpres.png">
     <h1 class="display-2">Trading Express<small class="text-body-secondary">  Construye tu futuro.</small>
     </h1>
     

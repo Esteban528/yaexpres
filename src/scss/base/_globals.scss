@@ -1,10 +1,21 @@
 @use "variables" as v;
 
-body {
-    background: rgb(207,207,207);
-    background: linear-gradient(0deg, rgb(235, 235, 235) 0%, rgba(255,255,255,1) 100%); 
+html {
+    
+}
+
+html, body {
+    // display: flex;
+    // flex-direction: column;
+    background: rgb(255,255,255);
+    background: linear-gradient(0deg, rgba(255,255,255,1) 0%, rgba(212,212,212,1) 50%, rgba(255,255,255,1) 100%); 
 }
 
 .mlogo {
-    border-radius: 25%;
+    border-radius: .5rem;
+}
+
+.brand-logo {
+    max-width: 3rem;
+    border-radius: 50%;
 }

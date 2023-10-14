@@ -38,7 +38,7 @@ class User extends Base
 
   public function create () {
     $this->hashPassword ();
-    parent::create();
+    return parent::create();
   }
 
   public static function auth(): bool

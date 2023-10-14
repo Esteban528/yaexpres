@@ -3,7 +3,7 @@
             <p class="col-md-4 mb-0 text-body-secondary">&copy; 2023 Ya express</p>
         
             <a href="/" class="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-body-emphasis text-decoration-none">
-			<img src="/image?image=yaExpres.jpg" class="mlogo brand-logo w-25">
+			<img src="image?image=logo-min.jpeg" class="mlogo brand-logo w-25">
             </a>
 
             <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
