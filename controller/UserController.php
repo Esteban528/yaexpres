@@ -8,15 +8,28 @@ use MVC\Misc;
 class UserController {
     
     public static function login(Router $router) {
+        $msg = null;
+        $loginData = [];
 
         if ($_SERVER['REQUEST_METHOD']==="POST"){
             $loginData = $_POST['login'];
+            $temporalUser = new User($loginData);
+            $result = $temporalUser->userExist();
+            
+            if ($result->num_rows == 1) {
+                
+                $login = $temporalUser->auth($result);
+                if (!$login) {
+                    $msg = ['Contraseña incorrecta', 'alert-danger'];
+                }
+
+            }else $msg = ['El usuario no está registrado (No existe)', 'alert-danger'];
         }
 
         $router->render('user/login', [
-            'email' => $_POST['login']['email'] ?? '',
-            'password' => $_POST['login']['password'] ?? '',
+            'login' => $loginData,
             'actual' => "login",
+            'msg' => $msg,
         ]);
     }
     

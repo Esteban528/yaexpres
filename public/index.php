@@ -19,6 +19,6 @@ $router->addPost("/login", [UserController::class, 'login']);
 $router->addGet("/register", [UserController::class, 'register']);
 $router->addPost("/register", [UserController::class, 'register']);
 
-// $router->addGet("/test", [TestController::class, 'list']);
+ $router->addGet("/test", [TestController::class, 'list']);
 
 $router->checkRoutes();

@@ -10,16 +10,18 @@ class TestController {
             "id", "nombre", "apellido", "email", "telefono", "cedula", "password", "permiso" 
           ]; */
     
-        $contentUser = User::all();
+        // $contentUser = new User(['email'=>'estebangonza2005@gmail.com']);
+        // $contentUser->userExist();
         // foreach($contentUser as $key => $value) {
         //     if ($value->id != "2") {
         //         $result = $value->delete();
         //         showFormat($result);
         //     }
         // }
+        // showFormat(User::isAuth());
 
         $router->render('test/index', [
-            'content' => $contentUser
+            'content' => $contentUser ?? null,
         ]);
     }
 }

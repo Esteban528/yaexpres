@@ -40,17 +40,6 @@ class User extends Base
     $this->hashPassword ();
     return parent::create();
   }
-
-  public static function auth(): bool
-  {
-    session_start();
-
-    if (!$_SESSION['login']) {
-      header('Location: /');
-    }
-    return true;
-  }
-
   public static function setUser($user)
   {
     self::$user = $user;
@@ -59,6 +48,74 @@ class User extends Base
   public static function getUser()
   {
     return self::$user;
+  }
+
+  public function userExist () {
+    $query = "SELECT * FROM ". static::$dbTable . " WHERE email = '". $this->email."' LIMIT 1";
+    $result = self::$db->query($query);
+    return $result;
+  }
+
+  protected function checkPassword($user) : bool{
+    return password_verify($this->password, $user->password);
+  }
+
+  public function auth($result) : bool{
+    $user = $result->fetch_object();
+    $password = $this->checkPassword($user);
+ 
+    if($password === true){
+      self::sessionManager($user);
+      header('location: /?msg=4');
+      return true;
+    }
+    return false;
+  }
+
+  public static function sessionManager ($user) {
+    session_start();
+
+    $_SESSION['email'] = $user->email;
+    $_SESSION['id'] = $user->id;
+    $_SESSION['logged'] = true;
+    $_SESSION['permiso'] = intval($user->permiso);
+
+  }
+
+  public static function isAuth(): bool
+  {
+    session_start();
+    if ($_SESSION['logged']) return true;
+    // header('Location: /');
+    return false;
+  }
+
+  public static function getPermits() : int {
+    session_start();
+    return $_SESSION['permiso'] ?? 0;
+  }
+
+  public static function logout () {
+    session_start();
+    $_SESSION = [];
+    header('location: /?msg=3');
+    session_destroy();
+  }
+
+  public static function restartActivity() {    
+    session_start();
+    
+    $inactivity_timeout = 1800; 
+    
+    if (isset($_SESSION['last_activity'])) {        
+        if (time() - $_SESSION['last_activity'] > $inactivity_timeout) {            
+            session_unset();
+            session_destroy();
+        }
+    }
+    
+    $_SESSION['last_activity'] = time();
+
   }
 
   public function hashPassword()

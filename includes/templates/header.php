@@ -1,4 +1,13 @@
-<?php header('Content-Type: text/html'); ?>
+<?php
+
+use Model\User;
+
+$permits = User::getPermits();
+
+
+
+header('Content-Type: text/html'); 
+?>
 <!DOCTYPE html>
 <html lang="es">
 

@@ -26,88 +26,93 @@ function validateRegisterForm(){
 
     
     const form = document.getElementById("form-register");
-        
-    form.addEventListener("submit", (event) => {
+    
+    if( form ) {
 
-        event.preventDefault();
-
-            for(let i=0; i < elements.length; i++){
-                const element = elements[i][0];
-
-                element.classList.forEach(className => {
-                    if (className == 'is-valid'){
-                        elements[i][1] = true;
-                    }   
-                });
-                if (!elements[i][1]) {
-                    // element.inp
-                    const fakeEvent = {"target":element}
-                    validateElement(fakeEvent)
-                    validateEmail(fakeEvent)
-                    //setValidElement(element, false)
+        form.addEventListener("submit", (event) => {
+    
+            event.preventDefault();
+    
+                for(let i=0; i < elements.length; i++){
+                    const element = elements[i][0];
+    
+                    element.classList.forEach(className => {
+                        if (className == 'is-valid'){
+                            elements[i][1] = true;
+                        }   
+                    });
+                    if (!elements[i][1]) {
+                        // element.inp
+                        const fakeEvent = {"target":element}
+                        validateElement(fakeEvent)
+                        validateEmail(fakeEvent)
+                        //setValidElement(element, false)
+                    }
+                    element.classList.forEach(className => {
+                        if (className == 'is-valid'){
+                            elements[i][1] = true;
+                        }   
+                    });
                 }
-                element.classList.forEach(className => {
-                    if (className == 'is-valid'){
-                        elements[i][1] = true;
-                    }   
-                });
-            }
-            for(let i=0; i < elements.length; i++){
-                const [element, bool ] = elements[i];
-
-                if(!bool){
-                    return;
-                }               
-            }
-
-            form.classList.add("was-validated");
-            const modalBody = document.querySelector("#modal-bodyRegster");
-            const modalInfo = document.createElement("div");
-
-            const text_nombre = name.value;
-            const text_apellido = apellido.value;
-            const text_telefono = telefono.value;
-            const text_email = email.value;
-            const text_password = password.value;
-            const text_cedula = cedula.value ?? "No tiene";
-            
-            modalBody.innerHTML = '';
-
-            modalInfo.innerHTML = `
+                for(let i=0; i < elements.length; i++){
+                    const [element, bool ] = elements[i];
+    
+                    if(!bool){
+                        return;
+                    }               
+                }
+    
+                form.classList.add("was-validated");
+                const modalBody = document.querySelector("#modal-bodyRegster");
+                const modalInfo = document.createElement("div");
+    
+                const text_nombre = name.value;
+                const text_apellido = apellido.value;
+                const text_telefono = telefono.value;
+                const text_email = email.value;
+                const text_password = password.value;
+                const text_cedula = cedula.value ?? "No tiene";
                 
-                <ul class="list-group">
-                    <li class="list-group-item"><b>Nombre:</b> ${text_nombre} ${text_apellido}</li>
-                    <li class="list-group-item"><b>Telefono:</b> ${text_telefono}</li>
-                    <li class="list-group-item"><b>Correo electrónico:</b> ${text_email}</li>
-                    <li class="list-group-item"><b>Cédula de ciudadanía:</b> ${text_cedula == '' ? 'No tiene' : text_cedula}</li>
-                </ul>
-            `//<li>Contraseña: ${text_password}</li>
-            modalBody.appendChild(modalInfo);
-
-            const myModal = new bootstrap.Modal(document.getElementById('modalFactory'), null)
-            myModal.show();
-
-            const buttonSubmit = document.getElementById("register-button-Confirm");
-            buttonSubmit.addEventListener("click", event => {
-                form.submit();
-            });
-            
-    }, false);
-
-  
-    validateOpcionalElement(cedula, cedula.value, 10, 10, true);
+                modalBody.innerHTML = '';
+    
+                modalInfo.innerHTML = `
+                    
+                    <ul class="list-group">
+                        <li class="list-group-item"><b>Nombre:</b> ${text_nombre} ${text_apellido}</li>
+                        <li class="list-group-item"><b>Telefono:</b> ${text_telefono}</li>
+                        <li class="list-group-item"><b>Correo electrónico:</b> ${text_email}</li>
+                        <li class="list-group-item"><b>Cédula de ciudadanía:</b> ${text_cedula == '' ? 'No tiene' : text_cedula}</li>
+                    </ul>
+                `//<li>Contraseña: ${text_password}</li>
+                modalBody.appendChild(modalInfo);
+    
+                const myModal = new bootstrap.Modal(document.getElementById('modalFactory'), null)
+                myModal.show();
+    
+                const buttonSubmit = document.getElementById("register-button-Confirm");
+                buttonSubmit.addEventListener("click", event => {
+                    form.submit();
+                });
+                
+        }, false);
+    
+      
+        validateOpcionalElement(cedula, cedula.value, 10, 10, true);
+    }
 }
 
 function showPasswordButton() {
     const button = document.getElementById("form-button-showPassword");
 
-    button.addEventListener("click", event => {
-        const inputPassword = document.getElementById("inputPassword");
-
-        if (inputPassword.type == "password") {
-          inputPassword.type = "text";
-        } else inputPassword.type = "password";
-    })
+    if (button){
+        button.addEventListener("click", event => {
+            const inputPassword = document.getElementById("inputPassword");
+    
+            if (inputPassword.type == "password") {
+              inputPassword.type = "text";
+            } else inputPassword.type = "password";
+        })
+    }
 }
 
 function validateOpcionalElement(element, value, minlength = 3, maxLength = 12, onlyNumber=false) {
