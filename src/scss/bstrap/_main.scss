@@ -2,6 +2,8 @@
 $primary: #F47F22;
 $enable-shadows: true;
 $prefix: "mo-";
+$nav-underline-link-active-color: $primary;
+
 
 // Then import Bootstrap
 @import "../../../node_modules/bootstrap/scss/bootstrap";

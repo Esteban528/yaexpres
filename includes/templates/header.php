@@ -2,9 +2,31 @@
 
 use Model\User;
 
-$permits = User::getPermits();
+$permit = User::getPermits()??0;    
 
-
+$header = [
+    [
+        'title' => 'Inicio', 
+        'actual_key' => 'home',
+        'minPermit' => 0,
+        'onlyPermit' => false,
+        'href' => '/',
+    ],
+    [
+        'title' => 'Iniciar sesión', 
+        'actual_key' => 'login',
+        'minPermit' => 0,
+        'onlyPermit' => true,
+        'href' => '/login',
+    ],
+    [
+        'title' => 'Cerrar sesión', 
+        'actual_key' => 'logout',
+        'minPermit' => 1,
+        'onlyPermit' => false,
+        'href' => '/logout',
+    ],
+];
 
 header('Content-Type: text/html'); 
 ?>
@@ -32,16 +54,30 @@ header('Content-Type: text/html');
                 </button>
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item">
-                            <a class="nav-link <?php $n='home'; 
-                            echo $actual==$n? 'active': '' ?>" 
-                            aria-current="page" href="/">Inicio</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link <?php $n='login'; 
-                            echo $actual==$n? 'active': '' ?>" 
-                            href="/login">Iniciar Sesion</a>
-                        </li>
+                        <?php 
+                            foreach ($header as $navItems){
+                                $bool = false;
+                                if ($navItems['onlyPermit']==true && $navItems['minPermit'] == $permit){
+                                    $bool = true;
+                                }else{
+                                    if ($permit >= $navItems['minPermit'] && !$navItems['onlyPermit']) {
+                                        $bool = true;
+                                    }
+                                }
+
+                                if ($bool):
+                                    ?>
+                                        <li class="nav-item">
+                                        <a class="nav-link <?php 
+                                        echo $actual==$navItems['actual_key'] ? 'active': '' ?>" 
+                                        href="<?php echo $navItems['href'] ?>">
+                                            <?php echo $navItems['title'] ?>
+                                        </a>
+                                        </li>
+                                    <?php
+                                endif;
+                            }                            
+                        ?>
                     </ul>
                     <span class="navbar-text">
                         Tu mejor conexión

@@ -16,6 +16,7 @@ $router->addGet("/image", [PageController::class, 'image']);
 $router->addGet("/error", [PageController::class, 'error']);
 $router->addGet("/login", [UserController::class, 'login']);
 $router->addPost("/login", [UserController::class, 'login']);
+$router->addGet("/logout", [UserController::class, 'logout']);
 $router->addGet("/register", [UserController::class, 'register']);
 $router->addPost("/register", [UserController::class, 'register']);
 

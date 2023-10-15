@@ -32,6 +32,10 @@ class UserController {
             'msg' => $msg,
         ]);
     }
+
+    public static function logout() {
+        User::logout();
+    }
     
     public static function register(Router $router) {
         $userInfo = [];

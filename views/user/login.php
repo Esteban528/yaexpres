@@ -4,7 +4,7 @@
     <form method="POST">
         <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Email address</label>
-            <input required name="login[email]" type="email" class="form-control if-email" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $login['emailhttps://www.youtube.com/playlist?list=PLnunbwZjHqMO-JII_HBf5TAzdzaBJP34w'] ?? '' ?>">
+            <input required name="login[email]" type="email" class="form-control if-email" id="exampleInputEmail1" aria-describedby="emailHelp" value="<?php echo $login['email'] ?? '' ?>">
             <!-- <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div> -->
         </div>
         <div class="input-group mb-3">
