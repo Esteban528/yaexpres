@@ -1,29 +1,16 @@
 <?php
 
 use Model\User;
+    //showFormat($actualAdmin, true);
     $permit = User::getPermits()??0;    
 
     $nav = [
         [
-            'title' => 'Inicio', 
-            'actual_key' => 'home',
-            'minPermit' => 0,
+            'title' => '<i class="bi bi-people"></i> Usuarios', 
+            'actual_key' => 'users',
+            'minPermit' => 5,
             'onlyPermit' => false,
-            'href' => '/',
-        ],
-        [
-            'title' => 'Iniciar sesión', 
-            'actual_key' => 'login',
-            'minPermit' => 0,
-            'onlyPermit' => true,
-            'href' => '/login',
-        ],
-        [
-            'title' => 'Cerrar sesión', 
-            'actual_key' => 'logout',
-            'minPermit' => 1,
-            'onlyPermit' => false,
-            'href' => '/logout',
+            'href' => '/admin/users',
         ],
     ];
 ?>
@@ -38,17 +25,11 @@ use Model\User;
                         <i class="bi bi-sliders"></i> Panel admin
                         </p>
                     </li>
-                    <li class="nav-item">
-                        <a href="#" class="list-group-item list-group-item-action active" aria-current="true">
-                        <i class="bi bi-people"></i> Usuarios
-                        </a>
-                    </li>
-
                     <?php 
                         foreach($nav as $element):?>
                         <li class="nav-item">
                         <a href="<?php echo $element['href'];?>" class="list-group-item list-group-item-action <?php echo $element['actual_key'] == $actualAdmin ?'active':'';?>" aria-current="true">
-                        <i class="bi bi-people"></i> Usuarios
+                        <?php echo $element['title'] ?>
                         </a>
                     </li>
                     <?php endforeach;

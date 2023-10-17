@@ -21,7 +21,10 @@ $router->addGet("/logout", [UserController::class, 'logout']);
 $router->addGet("/register", [UserController::class, 'register']);
 $router->addPost("/register", [UserController::class, 'register']);
 $router->addGet("/admin", [AdminController::class, 'index']);
-$router->addPost("/admin", [AdminController::class, 'index']);
+$router->addGet("/admin/users", [AdminController::class, 'users']);
+$router->addGet("/admin/users/delete", [AdminController::class, 'delete']);
+$router->addPost("/admin/users", [AdminController::class, 'users']);
+// $router->addPost("/admin", [AdminController::class, 'index']);
 
  $router->addGet("/test", [TestController::class, 'list']);
 

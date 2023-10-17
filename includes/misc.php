@@ -1,8 +1,8 @@
 <?php 
 require 'globals.php';
 
-function importTemplate($template, $actualPage = '') {
-    $actual = $actualPage;
+function importTemplate($template, $variableName = '', $value = null) {
+    $$variableName = $value;
     
     include TEMPLATES_DIR."/{$template}".'.php';
 }

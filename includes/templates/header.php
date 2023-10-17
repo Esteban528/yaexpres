@@ -47,7 +47,7 @@ header('Content-Type: text/html');
         <nav class="navbar nav nav-underline navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"> 
-                <img class="brand-logo" src="image?image=logo-min.jpeg" alt="brand-logo">    
+                <img class="brand-logo" src="/image?image=logo-min.jpeg" alt="brand-logo">    
                 YaExpres</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>

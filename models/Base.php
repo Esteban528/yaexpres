@@ -100,10 +100,11 @@ class Base
 
     public static function find($id) {
         $query = "SELECT * FROM " . static::$dbTable  ." WHERE id = {$id}";
+        
         $result = self::consult($query);
         return array_shift( $result ) ;
     }
-
+    
     public static function get($limit) {
         $query = "SELECT * FROM " . static::$dbTable . " LIMIT {$limit}";
         $result = self::consult($query);

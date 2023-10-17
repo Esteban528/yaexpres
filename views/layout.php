@@ -1,5 +1,5 @@
 <?php require_once __DIR__.'/../includes/app.php';
-importTemplate('header', $actual ?? '');
+importTemplate('header', 'actual', $actual ?? '');
 
 if (!empty($msg)) {
     $msg_content = $msg[0];
