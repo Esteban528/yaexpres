@@ -34,5 +34,8 @@ create table videos (
     titulo varchar(60)
 );
 
-insert into permisos (nombre) VALUES ('miembro');
-insert into permisos (nombre) VALUES ('administrador');
+insert into permisos (nombre) VALUES ('All');
+insert into permisos (nombre) VALUES ('Premium');
+insert into permisos (nombre) VALUES ('Moderador');
+insert into permisos (nombre) VALUES ('Admin');
+insert into permisos (nombre) VALUES ('Owner');

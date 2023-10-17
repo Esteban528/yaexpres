@@ -73,7 +73,7 @@ class User extends Base
   }
 
   public static function sessionManager ($user) {
-    session_start();
+    self::startSession();
 
     $_SESSION['email'] = $user->email;
     $_SESSION['id'] = $user->id;
@@ -84,26 +84,26 @@ class User extends Base
 
   public static function isAuth(): bool
   {
-    session_start();
+    self::startSession();
     if ($_SESSION['logged']) return true;
     // header('Location: /');
     return false;
   }
 
   public static function getPermits() : int {
-    session_start();
+    self::startSession();
     return $_SESSION['permiso'] ?? 0;
   }
 
   public static function logout () {
-    session_start();
+    self::startSession();
     $_SESSION = [];
     header('location: /?msg=3');
     session_destroy();
   }
 
   public static function restartActivity() {    
-    session_start();
+    self::startSession();
     
     $inactivity_timeout = 1800; 
     
@@ -116,6 +116,12 @@ class User extends Base
     
     $_SESSION['last_activity'] = time();
 
+  }
+  
+  public static function startSession() {
+    if (session_status() == PHP_SESSION_NONE) {
+      return session_start();
+    }
   }
 
   public function hashPassword()

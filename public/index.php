@@ -7,6 +7,7 @@ use MVC\Router;
 use Controller\PageController;
 use Controller\TestController;
 use Controller\UserController;
+use Controller\AdminController;
 
 $router = new Router();
 
@@ -19,6 +20,8 @@ $router->addPost("/login", [UserController::class, 'login']);
 $router->addGet("/logout", [UserController::class, 'logout']);
 $router->addGet("/register", [UserController::class, 'register']);
 $router->addPost("/register", [UserController::class, 'register']);
+$router->addGet("/admin", [AdminController::class, 'index']);
+$router->addPost("/admin", [AdminController::class, 'index']);
 
  $router->addGet("/test", [TestController::class, 'list']);
 

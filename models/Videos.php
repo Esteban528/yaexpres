@@ -2,20 +2,20 @@
 
 namespace Model;
 
-class Permisos extends Base
+class Videos extends Base
 {
-  protected static $dbTable = 'permisos';
+  protected static $dbTable = 'videos';
 
   protected static $dbCol = [
-    "id", "nombre",
+    "id", "titulo",
   ];
 
   public $id;
-  public $nombre;
+  public $titulo;
 
   public function __construct($args = []){
     $this->id = $args['id'] ?? 0;
-    $this->nombre = $args['nombre'] ?? '';
+    $this->titulo = $args['titulo'] ?? '';
     
     $this->validate();
   }
