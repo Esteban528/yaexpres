@@ -20,4 +20,4 @@
     </form>
     <p>¿No tienes una cuenta? <a href="/register" class="btn btn-link">Crea una cuenta</a></p>
 </main>
-
+<script src="/file?type=js&file=form.js" type="text/javascript"></script>

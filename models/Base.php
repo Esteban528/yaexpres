@@ -15,11 +15,17 @@ class Base
     public function save()
     {
         $properties = $this->sanitize();
-        $query = " INSERT INTO ".static::$dbTable." (";
-        $query .= join(", ", array_keys($properties));
-        $query .= " ) VALUES ( '";
-        $query .= join("', '", array_values($properties));
-        $query .= "') ";
+        
+        $values = [];
+        foreach($properties as $key => $value) {
+            $values[] = "{$key}='{$value}'";
+        }
+
+        $query = " UPDATE ".static::$dbTable." SET ";
+        $query .=  join(', ', $values );
+        $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
+        $query .= " LIMIT 1 "; 
+        
 
         $result = self::$db->query($query);
         return $result;

@@ -26,6 +26,13 @@ $header = [
         'onlyPermit' => false,
         'href' => '/logout',
     ],
+    [
+        'title' => 'Admin panel', 
+        'actual_key' => 'admin',
+        'minPermit' => User::$adminLevel,
+        'onlyPermit' => false,
+        'href' => '/admin',
+    ],
 ];
 
 header('Content-Type: text/html'); 

@@ -8,7 +8,8 @@ use MVC\Router;
 class AdminController {
 
     public static function index(Router $router) : void {
-        
+        User::checkAdmin();
+
         $router->render('admin/index', [
             'actual' => 'admin',
             'actualAdmin' => '',
@@ -16,6 +17,8 @@ class AdminController {
     }
     
     public static function users(Router $router) : void {
+        User::checkAdmin();
+        
         $users = User::all();
         $ranks = Permisos::all();
 
@@ -28,6 +31,8 @@ class AdminController {
     }
 
     public static function delete(Router $router) : void {
+        User::checkAdmin();
+        
         $id = $_GET['id'] ?? null;
 
         if (!is_null($id)) {
@@ -40,5 +45,39 @@ class AdminController {
                 }
             }
         }
+    }
+
+    public static function edit(Router $router) : void {
+        User::checkAdmin();
+       
+        $id = $_GET['id'] ?? null;
+
+        if (!is_null($id)) {
+            $user = User::find(intval($id) ?? 0);
+            if(!$user) {
+                header('location: /admin/users');
+            }
+        }else {
+            header('location: /admin/users');
+        }
+
+        if ($_SERVER['REQUEST_METHOD']==="POST"){
+            $userData = $_POST['user'];
+            $userData['id'] = intval($id);
+            $user = new User($userData);
+            $result = $user->update();
+            
+            if($result){
+                header('location: /admin/users');
+            }
+            else
+                header('location: /admin/users?msg=3');
+        }
+
+        $router->render('admin/userEdit', [
+            'actual' => 'admin',
+            'actualAdmin' => 'users',
+            'user' => $user ?? null,
+        ]);
     }
 }

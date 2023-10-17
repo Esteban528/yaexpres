@@ -5,6 +5,7 @@ namespace Model;
 class User extends Base
 {
   protected static $user;
+  public static $adminLevel = 5;
   protected static $dbTable = 'usuarios';
 
   protected static $dbCol = [
@@ -34,6 +35,13 @@ class User extends Base
     $this->permiso  = $args['permiso'] ?? 1;
 
     $this->validate();
+  }
+
+  public function update () {
+    static::$dbCol = [
+      "id", "nombre", "apellido", "email", "telefono", "cedula"
+    ];
+    return $this->save();
   }
 
   public function create () {
@@ -116,6 +124,18 @@ class User extends Base
     
     $_SESSION['last_activity'] = time();
 
+  }
+
+  public static function checkAdmin() {
+    $bool = self::isAdmin(self::getPermits());
+    
+    if (!$bool) {
+      header('location: /error');
+    }
+  }
+
+  public static function isAdmin($level) {
+    return $level >= self::$adminLevel;
   }
   
   public static function startSession() {
