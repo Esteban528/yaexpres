@@ -1,11 +1,11 @@
-<img class="img-fluid" src="/image?image=YaExpresWallpaper.png">
 <main class="container">
-    <h1 class="display-2">Trading Express<small class="text-body-secondary">  Construye tu futuro.</small>
-    </h1>
+    <img class="img-fluid img-br mt-4" src="/image?image=YaExpresWallpaper.png">
     
-
-    <section class="container-fluid">
-
+    
+    <section class="container-fluid mt-4">
+        
+        <h1 class="display-2">Trading Express<small class="text-body-secondary">  Construye tu futuro.</small>
+    </h1>
         <div class="card">
             <div class="card text-center">
                 <div class="card-header">
