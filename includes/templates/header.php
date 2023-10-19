@@ -20,18 +20,19 @@ $header = [
         'href' => '/login',
     ],
     [
-        'title' => 'Cerrar sesión', 
-        'actual_key' => 'logout',
-        'minPermit' => 1,
-        'onlyPermit' => false,
-        'href' => '/logout',
-    ],
-    [
         'title' => 'Admin panel', 
         'actual_key' => 'admin',
         'minPermit' => User::$adminLevel,
         'onlyPermit' => false,
         'href' => '/admin',
+    ],
+
+    [
+        'title' => 'Cerrar sesión', 
+        'actual_key' => 'logout',
+        'minPermit' => 1,
+        'onlyPermit' => false,
+        'href' => '/logout',
     ],
 ];
 
@@ -51,11 +52,11 @@ header('Content-Type: text/html');
 
 <body>
     <header>
-        <nav class="navbar nav nav-underline navbar-expand-lg">
+        <nav class="navbar nav bg-primary navbar-expand-lg mb-5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"> 
                 <img class="brand-logo" src="/image?image=logo-min.jpeg" alt="brand-logo">    
-                YaExpres</a>
+                Conexion YaExpress</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>

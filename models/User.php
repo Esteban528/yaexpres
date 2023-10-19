@@ -39,7 +39,7 @@ class User extends Base
 
   public function update () {
     static::$dbCol = [
-      "id", "nombre", "apellido", "email", "telefono", "cedula"
+      "id", "nombre", "apellido", "email", "telefono", "cedula", "permiso"
     ];
     return $this->save();
   }

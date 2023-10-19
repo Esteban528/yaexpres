@@ -12,13 +12,20 @@ use Model\User;
             'onlyPermit' => false,
             'href' => '/admin/users',
         ],
+        [
+            'title' => '<i class="bi bi-file-post"></i> Publicaciones', 
+            'actual_key' => 'posts',
+            'minPermit' => 3,
+            'onlyPermit' => false,
+            'href' => '/admin/post',
+        ],
     ];
 ?>
 
 <div class="container-fluid">
     <div class="row">
         <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
-            <div class="sidebar-sticky">
+            <div class="sidebar-sticky p-3">
                 <ul class="nav list-group flex-column">
                     <li class="nav-item">
                         <p href="#" class="list-group-item list-group-item-action" aria-current="true">

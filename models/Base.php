@@ -40,7 +40,8 @@ class Base
         $query .= join("', '", array_values($attributes));
         $query .= " ') ";
         
-        if (!empty($error)){
+
+        if (empty($this->errores)){
             $result = self::$db->query($query);
         }
         

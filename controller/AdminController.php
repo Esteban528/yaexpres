@@ -16,13 +16,13 @@ class AdminController {
         ]);
     }
     
-    public static function users(Router $router) : void {
+    public static function getUsers(Router $router) : void {
         User::checkAdmin();
         
         $users = User::all();
         $ranks = Permisos::all();
 
-        $router->render('admin/users', [
+        $router->render('admin/user/users', [
             'actual' => 'admin',
             'users' => $users,
             'ranks' => $ranks,
@@ -30,7 +30,7 @@ class AdminController {
         ]);
     }
 
-    public static function delete(Router $router) : void {
+    public static function deleteUser(Router $router) : void {
         User::checkAdmin();
         
         $id = $_GET['id'] ?? null;
@@ -47,7 +47,7 @@ class AdminController {
         }
     }
 
-    public static function edit(Router $router) : void {
+    public static function editUser(Router $router) : void {
         User::checkAdmin();
        
         $id = $_GET['id'] ?? null;
@@ -74,10 +74,16 @@ class AdminController {
                 header('location: /admin/users?msg=3');
         }
 
-        $router->render('admin/userEdit', [
+        $ranks = Permisos::all();
+        $router->render('admin/user/edit', [
             'actual' => 'admin',
             'actualAdmin' => 'users',
             'user' => $user ?? null,
+            'ranks' => $ranks ?? [],
         ]);
+    }
+
+    public static function getPosts () {
+        
     }
 }

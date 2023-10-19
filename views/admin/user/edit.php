@@ -1,3 +1,4 @@
+
 <div class="container-md ">
     <div class="d-flex flex-row mb-3 align-items-center">
         <div class="p-2 ">
@@ -45,6 +46,16 @@
                     <input type="email" name="user[email]" value="<?php echo $user->email ?? '' ?>" class="form-control if-email" id="form-register-email" aria-describedby="emailHelp">
                 </div>
                 <div id="emailHelp" class="form-text text-light">Dirección de correo electrónico para autenticación y recibir novedades.</div>
+            </div>
+
+            <div class="mt-3 mb-3">
+            <label for="rankSelector" class="form-label">Seleccione el rango</label>
+                <select id="rankSelector" class="form-select" name="user[permiso]" aria-label="Default select example">
+                    <?php foreach($ranks as $rank):?>
+                        <option <?php echo $rank->id == $user->permiso ? "selected" : null; ?> value="<?php echo $rank->id; ?>"><?php echo $rank->nombre; ?></option>
+                    <?php endforeach;
+                    ?>
+                </select>
             </div>
 
             <button id="form-register-submit" type="submit" class="btn btn-primary">Enviar</button>
