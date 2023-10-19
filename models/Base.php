@@ -51,7 +51,7 @@ class Base
     public function delete () {
         if ($this->id && $this->id>0) {
             $query = "DELETE FROM ".static::$dbTable." WHERE id=".$this->id;
-            // showFormat($query, true);
+            
             $result = self::$db->query($query);
             return $result;
         }

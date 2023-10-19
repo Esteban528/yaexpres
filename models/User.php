@@ -5,7 +5,14 @@ namespace Model;
 class User extends Base
 {
   protected static $user;
-  public static $adminLevel = 5;
+  public static $levels = [
+    "owner" => 5,
+    "admin" => 4,
+    "moderator" => 3,
+    "premium" => 2,
+    "all" => 1,
+  ];
+
   protected static $dbTable = 'usuarios';
 
   protected static $dbCol = [
@@ -127,15 +134,23 @@ class User extends Base
   }
 
   public static function checkAdmin() {
-    $bool = self::isAdmin(self::getPermits());
+    $bool = self::isRole("admin", self::getPermits());
     
     if (!$bool) {
       header('location: /error');
     }
   }
 
-  public static function isAdmin($level) {
-    return $level >= self::$adminLevel;
+  public static function checkRole($rol) {
+    $bool = self::isRole($rol, self::getPermits());
+    
+    if (!$bool) {
+      header('location: /error');
+    }
+  }
+
+  public static function isRole($rol, $level) {
+    return $level >= self::$levels[$rol];
   }
   
   public static function startSession() {

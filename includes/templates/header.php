@@ -22,7 +22,7 @@ $header = [
     [
         'title' => 'Admin panel', 
         'actual_key' => 'admin',
-        'minPermit' => User::$adminLevel,
+        'minPermit' => User::$levels["moderator"],
         'onlyPermit' => false,
         'href' => '/admin',
     ],
@@ -52,7 +52,7 @@ header('Content-Type: text/html');
 
 <body>
     <header>
-        <nav class="navbar nav bg-primary navbar-expand-lg mb-5">
+        <nav class="navbar nav navbar-expand-lg mb-5">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"> 
                 <img class="brand-logo" src="/image?image=logo-min.jpeg" alt="brand-logo">    

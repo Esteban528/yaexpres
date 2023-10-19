@@ -83,7 +83,23 @@ class AdminController {
         ]);
     }
 
-    public static function getPosts () {
-        
+    public static function getPosts (Router $router) {
+        User::checkRole("moderator");
+
+        $router->render('admin/post/posts', [
+            'actual' => 'admin',
+            'actualAdmin' => 'posts',
+            'user' => $user ?? null,
+            'ranks' => $ranks ?? [],
+        ]);
+    }
+    
+    public static function addPosts (Router $router) {
+        $router->render('admin/post/add', [
+            'actual' => 'admin',
+            'actualAdmin' => 'posts',
+            'user' => $user ?? null,
+            'ranks' => $ranks ?? [],
+        ]);
     }
 }

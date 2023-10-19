@@ -83,4 +83,3 @@
     </div>
   </div>
 </div>
-<script src="/file?type=js&file=form.js" type="text/javascript"></script>
