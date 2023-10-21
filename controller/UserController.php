@@ -40,12 +40,15 @@ class UserController {
     public static function register(Router $router) {
         $userInfo = [];
         $msg = null;
+        $errors = [];
+
         if ($_SERVER['REQUEST_METHOD']==="POST"){           
             $userInfo = ($_POST["user"]);
 
             if(!empty($userInfo)){
                 $user = new User($userInfo);
                 $result = $user->create();
+                $errors = $user->validate();
                 
                 if ($result)
                     header('location: /?msg=0');
@@ -59,7 +62,8 @@ class UserController {
             'content' => "",
             'user' => $userInfo,
             'actual' => "login",
-            'msg' => $msg
+            'msg' => $msg,
+            'messages' => $errors ?? [],
         ]);
     }
 }

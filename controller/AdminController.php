@@ -89,8 +89,6 @@ class AdminController {
         $router->render('admin/post/posts', [
             'actual' => 'admin',
             'actualAdmin' => 'posts',
-            'user' => $user ?? null,
-            'ranks' => $ranks ?? [],
         ]);
     }
     
@@ -98,8 +96,6 @@ class AdminController {
         $router->render('admin/post/add', [
             'actual' => 'admin',
             'actualAdmin' => 'posts',
-            'user' => $user ?? null,
-            'ranks' => $ranks ?? [],
         ]);
     }
 }

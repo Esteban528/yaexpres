@@ -1,3 +1,4 @@
+create database yaexpress_crud;
 USE yaexpress_crud;
 
 create table if not exists permisos (

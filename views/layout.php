@@ -17,6 +17,16 @@ if (!empty($msg)) {
     <?php
 }
 
+if(!empty($messages)) {
+    foreach($messages as $message) {
+        ?> 
+            <div class="alert alert-danger" role="alert">
+            <?php echo $message ?>
+            </div>
+        <?php
+    }
+}  
+
 echo $content;
 
 importTemplate('footer');

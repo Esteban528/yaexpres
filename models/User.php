@@ -55,6 +55,35 @@ class User extends Base
     $this->hashPassword ();
     return parent::create();
   }
+
+  public function validate()
+  {
+
+    $this->errores = [];
+
+    if (!$this->nombre){
+      $this->errores[] = "El nombre es obligatorio";
+    }
+    if (!$this->apellido){
+      $this->errores[] = "El apellido es obligatorio";
+    }
+    if (!$this->email){
+      $this->errores[] = "El email es obligatorio";
+    }
+    if (!$this->telefono){
+      $this->errores[] = "El telefono es obligatorio";
+    }
+    if (!$this->password){
+      $this->errores[] = "La contraseña es obligatoria";
+    }
+    if (!$this->permiso){
+      $this->errores[] = "Hay un error interno";
+    }
+
+    return $this->errores;
+  }
+
+
   public static function setUser($user)
   {
     self::$user = $user;

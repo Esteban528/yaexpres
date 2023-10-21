@@ -49,6 +49,8 @@ class Router {
         }
         
         $msg = isset($msg) ? $msg : null;
+        $messages = isset($messages) ? $messages : [];
+
         
         if(is_null($msg)) {
             $msg = [];
@@ -57,7 +59,7 @@ class Router {
             if (!is_null($msg_id)) {
                 $msg = Misc::$msg[intval($msg_id)];
             }
-        }        
+        }       
 
         ob_start(); 
         include_once __DIR__ . "/views/$view.php";
