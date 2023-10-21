@@ -42,7 +42,6 @@ class UserController {
         $msg = null;
         if ($_SERVER['REQUEST_METHOD']==="POST"){           
             $userInfo = ($_POST["user"]);
-            showFormat($userInfo);
 
             if(!empty($userInfo)){
                 $user = new User($userInfo);

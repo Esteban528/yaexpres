@@ -14,6 +14,7 @@ class Base
 
     public function save()
     {
+        $this->validate();
         $properties = $this->sanitize();
         
         $values = [];
@@ -32,6 +33,7 @@ class Base
     }
 
     public function create() {   
+        $this->validate();
         $attributes = $this->sanitize();
         // Insertar en la base de datos
         $query = " INSERT INTO " . static::$dbTable . " ( ";
@@ -62,11 +64,12 @@ class Base
         $this->errores = [];
 
         foreach (static::$dbCol as $value) {
+            
             if (!$this->$value) {
                 $errores[] = $value . " inválido";
             }
         }
-
+        
     }
 
     public function attributes()
