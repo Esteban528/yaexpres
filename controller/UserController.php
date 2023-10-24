@@ -52,9 +52,6 @@ class UserController {
                 
                 if ($result)
                     header('location: /?msg=0');
-                else {
-                    $msg = ["Ha ocurrido un error, ese email ya existe"];
-                }
             }
         }
 
@@ -62,7 +59,6 @@ class UserController {
             'content' => "",
             'user' => $userInfo,
             'actual' => "login",
-            'msg' => $msg,
             'messages' => $errors ?? [],
         ]);
     }

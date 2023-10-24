@@ -93,6 +93,20 @@ class AdminController {
     }
     
     public static function addPosts (Router $router) {
+
+        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+
+        
+
+
+            // // Setear la imagen
+            // // Realiza un resize a la imagen con intervention
+            // if($_FILES['posts']['tmp_name']['imagen']) {
+            //     $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
+            //     $propiedad->setImagen($nombreImagen);
+            // }
+            // $image->save(CARPETA_IMAGENES . $nombreImagen);
+
         $router->render('admin/post/add', [
             'actual' => 'admin',
             'actualAdmin' => 'posts',

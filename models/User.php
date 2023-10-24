@@ -83,6 +83,10 @@ class User extends Base
     return $this->errores;
   }
 
+  public function checkValidEmail() {
+    $result = self::find($this->email, $key = "email");
+    showFormat($result, true);
+  }
 
   public static function setUser($user)
   {
