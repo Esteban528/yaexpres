@@ -27,6 +27,7 @@ $router->addGet("/admin/users/edit", [AdminController::class, 'editUser']);
 $router->addPost("/admin/users/edit", [AdminController::class, 'editUser']);
 $router->addGet("/admin/post", [AdminController::class, 'getPosts']);
 $router->addGet("/admin/post/add", [AdminController::class, 'addPosts']);
+$router->addPost("/admin/post/add", [AdminController::class, 'addPosts']);
 // $router->addPost("/admin", [AdminController::class, 'index']);
 
  $router->addGet("/test", [TestController::class, 'list']);
