@@ -10,4 +10,10 @@ function importTemplate($template, $variableName = '', $value = null) {
 function importHtml($template, $actual = '') {
    include TEMPLATES_DIR."/{$template}".'.php';
 }
+
+
+// if(!is_dir(IMAGE_DIR)) {
+//     mkdir(IMAGE_DIR);
+//   }
+  
 ?>

@@ -1,9 +1,11 @@
 <?php
 namespace Controller;
 
-use Model\Permisos;
 use Model\User;
 use MVC\Router;
+use Model\Posts;
+use Model\Permisos;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AdminController {
 
@@ -93,11 +95,29 @@ class AdminController {
     }
     
     public static function addPosts (Router $router) {
+        $id = (User::getIdFromSession());
+        $post = [];
 
         $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
 
-        
 
+        if ($_SERVER['REQUEST_METHOD'] === "POST"){
+            $postInfo = $_POST['post'] ?? [];
+            if (!empty($postInfo)) {
+                $post = new Posts($postInfo);
+
+                $tempImageName = $_FILES['post']['tmp_name']['imagen'];
+                if ($tempImageName) {
+                    $imageName = md5( uniqid( rand(), true ) ) . ".jpg";
+                    $image = Image::make($tempImageName)->fit(800,600);
+                    $image->save(IMAGE_DIR . $imageName);
+                    
+                    
+                }
+                
+            }
+
+        }
 
             // // Setear la imagen
             // // Realiza un resize a la imagen con intervention
@@ -107,9 +127,14 @@ class AdminController {
             // }
             // $image->save(CARPETA_IMAGENES . $nombreImagen);
 
+            
+
         $router->render('admin/post/add', [
             'actual' => 'admin',
+            'post' => $post ?? [],
             'actualAdmin' => 'posts',
+            'showRanks' => [1, 2],
+            'ranks' => Permisos::all() ?? [],
         ]);
     }
 }

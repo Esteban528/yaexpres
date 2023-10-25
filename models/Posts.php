@@ -22,6 +22,7 @@ class Posts extends Base
     $this->id = $args['id'] ?? 0;
     $this->titulo = $args['titulo'] ?? '';
     $this->imagen = $args['imagen'] ?? '';
+    $this->contenido = $args['contenido'] ?? '';
     $this->tipo = $args['tipo'] ?? '';
     $this->usuario = $args['usuario'] ?? 0;
     $this->fecha = $args['fecha'] ?? null;

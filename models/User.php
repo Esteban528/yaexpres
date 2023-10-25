@@ -130,6 +130,11 @@ class User extends Base
 
   }
 
+  public static function getIdFromSession() {
+    self::startSession();
+    return $_SESSION['id'] ?? 0;
+  }
+
   public static function isAuth(): bool
   {
     self::startSession();
