@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use Model\PostMetadata;
 use MVC\Router;
 use Model\User;
 
@@ -19,6 +20,16 @@ class TestController {
         //     }
         // }
         // showFormat(User::isAuth());
+        $PostMetadata = new PostMetadata([
+            'clave' => 'test',
+            'valor' => 'test',
+            'tipo' => '?',
+            'idPost' => 1,
+        ]);
+
+        //$result = $PostMetadata->create();
+        
+        exit;
 
         $router->render('test/index', [
             'content' => $contentUser ?? null,

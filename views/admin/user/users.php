@@ -27,10 +27,12 @@
                             <td><?php echo $user->cedula==''?'No tiene':$user->cedula; ?></td>
                             <td><?php echo $ranks[(intval($user->permiso)??0) -1]->nombre;?></td>
                             <td>
+                            <div class="btn-group" role="group" aria-label="Acciones">
                                 <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#modalId<?php echo $user->id; ?>"">
                                 Eliminar
                                 </button>
                                 <a class="btn btn-warning" href="/admin/users/edit?id=<?php echo $user->id;?>">Editar</a>
+                            </div>
                             </td>
 
                             

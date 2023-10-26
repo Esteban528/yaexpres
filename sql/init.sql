@@ -22,7 +22,7 @@ create table if not exists usuarios (
 create table if not exists posts (
 	id int not null auto_increment primary key,
     titulo varchar(60) not null,
-    contenido varchar(500) not null,
+    contenido varchar(5000) not null,
     imagen varchar(100),
     tipo varchar(50) not null,
     usuario int not null,
@@ -37,7 +37,7 @@ create table if not exists videos (
 
 create table if not exists usuario_metadata (
 	id int not null auto_increment primary key,
-    clave varchar(100) NOT NULL UNIQUE,
+    clave varchar(100) NOT NULL,
     valor varchar(500),
     tipo varchar(50) NOT NULL,
     idUsuario int,
@@ -46,7 +46,7 @@ create table if not exists usuario_metadata (
 
 create table if not exists video_metadata (
 	id int not null auto_increment primary key,
-    clave varchar(100) NOT NULL UNIQUE,
+    clave varchar(100) NOT NULL,
     valor varchar(500),
     tipo varchar(50) NOT NULL,
     idVideo int,
@@ -55,7 +55,7 @@ create table if not exists video_metadata (
 
 create table if not exists post_metadata (
 	id int not null auto_increment primary key,
-    clave varchar(100) NOT NULL UNIQUE,
+    clave varchar(100) NOT NULL,
     valor varchar(500),
     tipo varchar(50) NOT NULL,
     idPost int,

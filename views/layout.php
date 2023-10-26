@@ -6,7 +6,7 @@ if (!empty($msg)) {
     $msg_class = $msg[1] ?? 'alert-danger';
 
     ?>
-    <div class="container alert-container">
+    <div class="">
         <div class="alert <?php echo $msg_class?> alert-dismissible fade show" role="alert">
             <?php echo $msg_content?>
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -18,7 +18,7 @@ if (!empty($msg)) {
 }
 
 if(!empty($messages)) {
-    ?> <div class="container"> <?php
+    ?> <div class=""> <?php
     foreach($messages as $message) {
         ?> 
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
@@ -29,7 +29,8 @@ if(!empty($messages)) {
     }
     ?> </div> <?php
 }  
-
-echo $content;
+?> <div class="mt-5"> <?php
+    echo $content;
+?> </div> <?php
 
 importTemplate('footer');

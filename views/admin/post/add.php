@@ -17,7 +17,8 @@
 
                 <div class="mb-3">
                     <label for="contentPost" class="form-label">Contenido</label>
-                    <textarea name="post[contenido]" class="form-control" id="contentPost" rows="3" placeholder="Escriba el texto que usted quiere que tenga la publicación" required><?php echo $post->contenido ?? '' ?></textarea>
+                    <textarea name="post[contenido]" class="form-control" id="contentTextArea" rows="3" placeholder="Escriba el texto que usted quiere que tenga la publicación" required><?php echo $post->contenido ?? '' ?></textarea>
+                    <small id="charNum" class="form-text text-muted">5000 caracteres restantes</small>
                 </div>
 
                 <div class="mb-3">

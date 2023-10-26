@@ -11,6 +11,8 @@ class Base
     protected static $dbCol = [];
     protected static $dbTable = '';
     
+    public $lastInsertId = 0;
+    
 
     public function save()
     {
@@ -27,9 +29,8 @@ class Base
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
         
-
         $result = self::$db->query($query);
-        showFormat($result, true);
+        // showFormat($result, true);
         return $result;
     }
 
@@ -42,9 +43,14 @@ class Base
         $query .= " ) VALUES (' "; 
         $query .= join("', '", array_values($attributes));
         $query .= " ') ";
+
+        //showFormat($query);
         
         if (empty($this->errors)){
             $result = self::$db->query($query);
+            $selectId = self::$db->query("SELECT LAST_INSERT_ID();");
+            $row = $selectId->fetch_row();
+            $this->lastInsertId = $row[0];
         }
         
         return $result ?? false;
@@ -109,7 +115,8 @@ class Base
     }
 
     public static function find($value, $key = "id", $limit = false) {
-        $query = "SELECT * FROM " . static::$dbTable  ." WHERE {$key} = {$value} ". $limit ? "LIMIT 1" : "";
+        $query = "SELECT * FROM " . static::$dbTable  ." WHERE {$key} = {$value} ";
+        $query .= $limit ? "LIMIT 1" : "";
         
         $result = self::consult($query);
         return array_shift( $result ) ;
@@ -123,11 +130,11 @@ class Base
     }
 
     protected static function consult($query) : array {
-        
+
         $result = self::$db->query($query);
         $array = [];
-        while($registro = $result->fetch_assoc()) {
-            $array[] = static::createObject($registro);
+        while($register = $result->fetch_assoc()) {
+            $array[] = static::createObject($register);
         }
 
         $result->free();

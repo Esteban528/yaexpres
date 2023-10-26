@@ -10,7 +10,7 @@
 
     <div class="form-container text-light bg-opacity-25">
 
-        <form method="POST" id="form-register">
+        <form method="POST"  id="">
             <label for="personal-info" class="form-label">Información personal</label>
             <div class="input-group">
                 <span class="input-group-text">Nombre y Apellidos</span>

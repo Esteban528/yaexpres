@@ -52,7 +52,7 @@ header('Content-Type: text/html');
 
 <body>
     <header>
-        <nav class="navbar nav navbar-expand-lg mb-5">
+        <nav class="navbar nav navbar-expand-lg">
             <div class="container-fluid">
                 <a class="navbar-brand" href="/"> 
                 <img class="brand-logo" src="/image?image=logo-min.jpeg" alt="brand-logo">    

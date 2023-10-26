@@ -48,6 +48,7 @@ class User extends Base
     static::$dbCol = [
       "id", "nombre", "apellido", "email", "telefono", "cedula", "permiso"
     ];
+    
     return $this->save();
   }
 

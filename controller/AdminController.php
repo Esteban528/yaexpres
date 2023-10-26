@@ -7,6 +7,7 @@ use MVC\Router;
 use Model\Posts;
 use Model\Permisos;
 use Intervention\Image\ImageManagerStatic as Image;
+use Model\PostMetadata;
 
 class AdminController {
 
@@ -64,7 +65,10 @@ class AdminController {
             header('location: /admin/users');
         }
 
-        if ($_SERVER['REQUEST_METHOD']==="POST"){
+        
+
+        if ($_SERVER['REQUEST_METHOD']=== "POST" ){
+
             $userData = $_POST['user'];
             $userData['id'] = intval($id);
             $user = new User($userData);
@@ -83,6 +87,7 @@ class AdminController {
             'actualAdmin' => 'users',
             'user' => $user ?? null,
             'ranks' => $ranks ?? [],
+            'messages' => $user->validate(),
         ]);
     }
 
@@ -131,9 +136,20 @@ class AdminController {
                     if ($image) {
                         $image->save(IMAGE_DIR . $imageName);
                     }
-
+                    $postId = $post->lastInsertId;
+                    $postMetadataValues = [
+                        "clave" => "show",
+                        "valor" => "true",
+                        "tipo" => "visible",
+                        "idPost" => $postId,
+                    ];
+                    
+                    $postMedatadata = new PostMetadata($postMetadataValues);
+                    $postMedatadata->create();
+                    
                     header('location: /admin/post?msg=5');
                 }
+                $post->errors[] = "Ocurrio un error inesperado";
                 $errors = $post->errors;
             }
 

@@ -13,6 +13,7 @@ function validateForm() {
     lenghtChecker();
     onlyNumber();
     emailChecker();
+    loadBootstrapForms();
 }
 
 function validateRegisterForm(){
@@ -35,6 +36,8 @@ function validateRegisterForm(){
     
                 for(let i=0; i < elements.length; i++){
                     const element = elements[i][0];
+
+                    if(!element) continue;
     
                     element.classList.forEach(className => {
                         if (className == 'is-valid'){
@@ -56,8 +59,8 @@ function validateRegisterForm(){
                 }
                 for(let i=0; i < elements.length; i++){
                     const [element, bool ] = elements[i];
-    
-                    if(!bool){
+                    
+                    if(element && !bool){
                         return;
                     }               
                 }
@@ -228,11 +231,10 @@ function removeValidElement(element) {
 // Bootstrap
 
 // Example starter JavaScript for disabling form submissions if there are invalid fields
-(() => {
-    'use strict'
+function loadBootstrapForms () {
   
     // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    const forms = document.querySelectorAll('.needs-validation')
+    const forms = document.querySelectorAll('.needs-validation');
   
     // Loop over them and prevent submission
     Array.from(forms).forEach(form => {
@@ -245,4 +247,23 @@ function removeValidElement(element) {
         form.classList.add('was-validated')
       }, false)
     })
-  })()
+
+    const textAreaLimit = document.getElementById("contentTextArea");
+    
+    if (textAreaLimit) {
+        addEventListener("keyup", event => {
+            var maxLength = 2500;
+            var currentLength = textAreaLimit.value.length;
+        
+            // Actualiza el contador de caracteres restantes
+            document.getElementById("charNum").innerText = maxLength - currentLength + " caracteres restantes";
+        
+            // Limita la longitud del texto
+            if (currentLength > maxLength) {
+              textAreaLimit.value = textAreaLimit.value.slice(0, maxLength);
+              document.getElementById("charNum").innerText = "Límite de caracteres alcanzado";
+            }
+        })
+    }
+}
+
