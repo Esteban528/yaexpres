@@ -9,5 +9,6 @@ class Misc {
         ['Ha ocurrido un error', 'alert-danger'],
         ['Ha cerrado sesión con éxito', 'alert-info'],
         ['Inicio de sesión exitoso', 'alert-success'],
+        ['Publicación agregada con éxito', 'alert-success'],
     ];
 }

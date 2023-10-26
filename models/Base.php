@@ -4,7 +4,7 @@ namespace Model;
 
 class Base
 {
-    public $errores = [];
+    public $errors = [];
     public $id=0;
 
     public static $db;
@@ -29,6 +29,7 @@ class Base
         
 
         $result = self::$db->query($query);
+        showFormat($result, true);
         return $result;
     }
 
@@ -42,12 +43,11 @@ class Base
         $query .= join("', '", array_values($attributes));
         $query .= " ') ";
         
-
-        if (empty($this->errores)){
+        if (empty($this->errors)){
             $result = self::$db->query($query);
         }
         
-        return $result ?? null;
+        return $result ?? false;
     }
 
     public function delete () {
@@ -61,12 +61,12 @@ class Base
 
     public function validate()
     {
-        $this->errores = [];
+        $this->errors = [];
 
         foreach (static::$dbCol as $value) {
             
             if (!$this->$value) {
-                $errores[] = $value . " inválido";
+                $errors[] = $value . " inválido";
             }
         }
         

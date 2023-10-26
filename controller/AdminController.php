@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use Intervention\Image\Exception\ImageException;
 use Model\User;
 use MVC\Router;
 use Model\Posts;
@@ -88,46 +89,55 @@ class AdminController {
     public static function getPosts (Router $router) {
         User::checkRole("moderator");
 
+        $posts = Posts::all();
+
         $router->render('admin/post/posts', [
             'actual' => 'admin',
             'actualAdmin' => 'posts',
+            'posts' => $posts,
         ]);
     }
     
     public static function addPosts (Router $router) {
         $id = (User::getIdFromSession());
+        $errors = [];
         $post = [];
-
-        $nombreImagen = md5( uniqid( rand(), true ) ) . ".jpg";
+        $image = '';
 
 
         if ($_SERVER['REQUEST_METHOD'] === "POST"){
             $postInfo = $_POST['post'] ?? [];
             if (!empty($postInfo)) {
                 $post = new Posts($postInfo);
+                $post->usuario = $id;
 
                 $tempImageName = $_FILES['post']['tmp_name']['imagen'];
                 if ($tempImageName) {
                     $imageName = md5( uniqid( rand(), true ) ) . ".jpg";
-                    $image = Image::make($tempImageName)->fit(800,600);
-                    $image->save(IMAGE_DIR . $imageName);
-                    
-                    
+                    try {
+                        $image = Image::make($tempImageName)->fit(800,600);
+                    } catch(ImageException $e){
+                        $post->errors[] = "El formato o la imagen no pueden ser procesados";
+                        // showFormat($e["message"], true);
+                    }
+                    //
+                    $post->imagen = $imageName;
                 }
                 
+                
+                $post->validate();
+                $result = $post->generate();
+                if($result) {
+                    if ($image) {
+                        $image->save(IMAGE_DIR . $imageName);
+                    }
+
+                    header('location: /admin/post?msg=5');
+                }
+                $errors = $post->errors;
             }
 
         }
-
-            // // Setear la imagen
-            // // Realiza un resize a la imagen con intervention
-            // if($_FILES['posts']['tmp_name']['imagen']) {
-            //     $image = Image::make($_FILES['propiedad']['tmp_name']['imagen'])->fit(800,600);
-            //     $propiedad->setImagen($nombreImagen);
-            // }
-            // $image->save(CARPETA_IMAGENES . $nombreImagen);
-
-            
 
         $router->render('admin/post/add', [
             'actual' => 'admin',
@@ -135,6 +145,7 @@ class AdminController {
             'actualAdmin' => 'posts',
             'showRanks' => [1, 2],
             'ranks' => Permisos::all() ?? [],
+            'messages' => $errors ?? null,
         ]);
     }
 }

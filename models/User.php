@@ -59,28 +59,28 @@ class User extends Base
   public function validate()
   {
 
-    $this->errores = [];
+    $this->errors = [];
 
     if (!$this->nombre){
-      $this->errores[] = "El nombre es obligatorio";
+      $this->errors[] = "El nombre es obligatorio";
     }
     if (!$this->apellido){
-      $this->errores[] = "El apellido es obligatorio";
+      $this->errors[] = "El apellido es obligatorio";
     }
     if (!$this->email){
-      $this->errores[] = "El email es obligatorio";
+      $this->errors[] = "El email es obligatorio";
     }
     if (!$this->telefono){
-      $this->errores[] = "El telefono es obligatorio";
+      $this->errors[] = "El telefono es obligatorio";
     }
     if (!$this->password){
-      $this->errores[] = "La contraseña es obligatoria";
+      $this->errors[] = "La contraseña es obligatoria";
     }
     if (!$this->permiso){
-      $this->errores[] = "Hay un error interno";
+      $this->errors[] = "Hay un error interno";
     }
 
-    return $this->errores;
+    return $this->errors;
   }
 
   public function checkValidEmail() {

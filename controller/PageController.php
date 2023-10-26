@@ -47,9 +47,12 @@ class PageController {
         ob_clean();
 
         $image = $_GET['image'] ?? null;
+        $type = $_GET['public'] ?? null;
 
         if (!is_null($image)) {
-            $route = __DIR__.'/../public/images/'.$image;
+
+            $route = __DIR__.'/../public/images/';
+            $route .= $type == "true" ? 'img/'.$image : $image;
     
             if (file_exists($route)) {
                 $fileExtension = pathinfo($route, PATHINFO_EXTENSION);

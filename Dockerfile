@@ -11,9 +11,9 @@ RUN docker-php-ext-install -j$(nproc) gd
 RUN docker-php-ext-install mysqli
 RUN a2enmod rewrite
 
-RUN mkdir -p /var/www/html/public/images
-RUN chown -R www-data:www-data /var/www/html/public/images
-RUN chmod -R 755 /var/www/html/public/images
+RUN mkdir -p /var/www/html/public/images/img/
+RUN chown -R www-data:www-data /var/www/html/public/images/img/
+RUN chmod -R 755 /var/www/html/public/images/img/
 
 VOLUME /var/www/html
 VOLUME /usr/local/etc/php
