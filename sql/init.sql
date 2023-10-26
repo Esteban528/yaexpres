@@ -37,27 +37,27 @@ create table if not exists videos (
 
 create table if not exists usuario_metadata (
 	id int not null auto_increment primary key,
-    clave varchar(100),
+    clave varchar(100) NOT NULL UNIQUE,
     valor varchar(500),
-    tipo varchar(50),
+    tipo varchar(50) NOT NULL,
     idUsuario int,
     foreign key(idUsuario) references usuarios(id)
 );
 
 create table if not exists video_metadata (
 	id int not null auto_increment primary key,
-    clave varchar(100),
+    clave varchar(100) NOT NULL UNIQUE,
     valor varchar(500),
-    tipo varchar(50),
+    tipo varchar(50) NOT NULL,
     idVideo int,
     foreign key(idVideo) references videos(id)
 );
 
 create table if not exists post_metadata (
 	id int not null auto_increment primary key,
-    clave varchar(100),
+    clave varchar(100) NOT NULL UNIQUE,
     valor varchar(500),
-    tipo varchar(50),
+    tipo varchar(50) NOT NULL,
     idPost int,
     foreign key(idPost) references posts(id)
 );
