@@ -103,6 +103,8 @@ class AdminController {
     }
     
     public static function addPosts (Router $router) {
+        User::checkRole("moderator");
+
         $id = (User::getIdFromSession());
         $errors = [];
         $post = [];
@@ -167,6 +169,8 @@ class AdminController {
     }
 
     public static function editPosts(Router $router) {
+        User::checkRole("moderator");
+
         $id = $_GET['id'] ?? 0;
         $image = null;
 
@@ -222,5 +226,27 @@ class AdminController {
             'messages' => $post->validate() ?? null,
             'action' => "/admin/post/edit",
         ]);
+    }
+
+    public static function hidePosts(Router $router) {
+        User::checkRole("moderator");
+
+        $id = $_GET['id'] ?? null;
+        $show = $_GET['show'] ?? null;
+
+        if ($id && $show) {
+            $postMetaData = PostMetadata::locate($id, 'visible');
+            
+            $postMetaData->valor = !($show == "true") ? 'false' : 'true';
+            // showFormat($postMetaData->valor);
+
+            $result = $postMetaData->save();
+
+            if ($result) {
+                header('location: /admin/post');
+            }
+        }
+
+        
     }
 }

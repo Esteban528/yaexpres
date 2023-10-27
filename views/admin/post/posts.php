@@ -38,7 +38,7 @@
                                     </p>
                                     <div class="btn-group">
                                         <a href="/admin/post/edit?id=<?php echo $post->id ?>" class="btn btn-warning">Editar</a>
-                                        <a href="/admin/post/hide?id=<?php echo $post->id ?>&show=?<?php echo $postShow ? 'false' : 'true' ?>" class="btn btn-info"><?php echo $postShow ? 'Ocultar' : 'Mostrar' ?></a>
+                                        <a href="/admin/post/hide?id=<?php echo $post->id ?>&show=<?php echo $postShow ? 'false' : 'true' ?>" class="btn btn-info"><?php echo $postShow ? 'Ocultar' : 'Mostrar' ?></a>
                                     </div>
                                 </div>
                                 </div>
