@@ -26,8 +26,9 @@
                                     <p class="card-text text-truncate"><?php echo $post->contenido; ?>.</p>
                                     <p class="card-text"><small class="text-body-secondary"><?php echo $post->fecha; ?></small></p>
                                     <p class="card-text">Visibilidad: <?php
-                                        $postMetadata = PostMetadata::locate($post->id, "visible");
-                                        echo $postMetadata->valor == "true" ? '<i class="bi bi-eye-fill"></i>': '<i class="bi bi-eye-slash-fill"></i>';
+                                        $postMetadataVisible = PostMetadata::locate($post->id, "visible");
+                                        $postShow = $postMetadataVisible->valor == "true";
+                                        echo $postShow ? '<i class="bi bi-eye-fill"></i>': '<i class="bi bi-eye-slash-fill"></i>';
                                     ?></p>
                                     <p class="card-footer">
                                         <?php 
@@ -35,10 +36,9 @@
                                             echo $user->nombre . " " . $user->apellido;
                                         ?>
                                     </p>
-                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
-                                        <button type="button" class="btn btn-danger">Eliminar</button>
-                                        <button type="button" class="btn btn-warning">Middle</button>
-                                        <button type="button" class="btn btn-success">Right</button>
+                                    <div class="btn-group">
+                                        <a href="/admin/post/edit?id=<?php echo $post->id ?>" class="btn btn-warning">Editar</a>
+                                        <a href="/admin/post/hide?id=<?php echo $post->id ?>&show=?<?php echo $postShow ? 'false' : 'true' ?>" class="btn btn-info"><?php echo $postShow ? 'Ocultar' : 'Mostrar' ?></a>
                                     </div>
                                 </div>
                                 </div>

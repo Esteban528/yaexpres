@@ -74,9 +74,8 @@ class AdminController {
             $user = new User($userData);
             $result = $user->update();
             
-            if($result){
+            if($result)
                 header('location: /admin/users');
-            }
             else
                 header('location: /admin/users?msg=3');
         }
@@ -108,6 +107,7 @@ class AdminController {
         $errors = [];
         $post = [];
         $image = '';
+        $idPost = 0;
 
 
         if ($_SERVER['REQUEST_METHOD'] === "POST"){
@@ -162,6 +162,65 @@ class AdminController {
             'showRanks' => [1, 2],
             'ranks' => Permisos::all() ?? [],
             'messages' => $errors ?? null,
+            'action' => "/admin/post/add",
+        ]);
+    }
+
+    public static function editPosts(Router $router) {
+        $id = $_GET['id'] ?? 0;
+        $image = null;
+
+        if (!$id && $id == 0) {
+            header('locaton: /admin/post');
+        }
+
+        $post = Posts::find(intval($id));
+        $post->restartErrors();
+
+        if ($_SERVER['REQUEST_METHOD'] === "POST") {
+            $updatePost = new Posts($_POST['post']);
+            $oldImage = $post->imagen;
+            
+            $tempImageName = $_FILES['post']['tmp_name']['imagen'];
+
+            if ($tempImageName) {
+                $imageName = md5( uniqid( rand(), true ) ) . ".jpg";
+                try {
+                    $image = Image::make($tempImageName)->fit(800,600);
+                } catch(ImageException $e){
+                    $updatePost->errors[] = "El formato o la imagen no pueden ser procesados";
+                    // showFormat($e["message"], true);
+                }
+
+                
+                //
+                $updatePost->imagen = $imageName;
+            }
+
+    
+            $result = $updatePost->update();
+            if ($result) {
+                if ($image) {
+                    $image->save(IMAGE_DIR . $imageName);
+                }
+                //showFormat($oldImage, true);
+                if ($oldImage)
+                    unlink(IMAGE_DIR . $oldImage);
+
+                header('location: /admin/post');
+            }
+        }
+        
+        
+        
+        $router->render('admin/post/add', [
+            'actual' => 'admin',
+            'post' => $post ?? [],
+            'actualAdmin' => 'posts',
+            'showRanks' => [1, 2],
+            'ranks' => Permisos::all() ?? [],
+            'messages' => $post->validate() ?? null,
+            'action' => "/admin/post/edit",
         ]);
     }
 }

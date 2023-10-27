@@ -28,6 +28,8 @@ class Base
         $query .=  join(', ', $values );
         $query .= " WHERE id = '" . self::$db->escape_string($this->id) . "' ";
         $query .= " LIMIT 1 "; 
+
+        //showFormat($query, true);
         
         $result = self::$db->query($query);
         // showFormat($result, true);

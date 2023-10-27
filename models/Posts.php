@@ -54,9 +54,12 @@ class Posts extends Base
     return $this->errors;
   }
   public function update () {
-    // static::$dbCol = [
-    //   "id", "nombre", "apellido", "email", "telefono", "cedula", "permiso"
-    // ];
+    static::$dbCol = [
+      "id", "titulo", "contenido", "tipo", 
+    ];
+    if ($this->imagen) {
+      static::$dbCol[] = "imagen";
+    }
     return $this->save();
   }
 

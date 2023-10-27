@@ -8,7 +8,7 @@
         <div class="container admin-section main-content overflow-auto">
             <a href="/admin/post" class="btn btn-info mb-4" >Volver</a>
 
-            <form method="POST" action="/admin/post/add" id="form-postAdd" class="form-container" class="was-validated" enctype="multipart/form-data">
+            <form method="POST" action="<?php $action ?>" id="form-postAdd" class="form-container" class="was-validated" enctype="multipart/form-data">
             <div class="mb-3">
                 <input type="hidden" name="post[id]" value="<?php echo $post->id ?? 0 ?>">
                 <label for="titlePost" class="form-label">Titulo de la publicación</label>
