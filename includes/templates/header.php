@@ -36,6 +36,19 @@ $header = [
     ],
 ];
 
+$home = false;
+
+foreach ($header as $navItems) {
+    if ($actual==$navItems['actual_key']) {
+        $title = $navItems['title'];
+
+
+        if($actual == "home") {
+            $home = true;
+        }
+    }
+}
+
 header('Content-Type: text/html'); 
 ?>
 <!DOCTYPE html>
@@ -44,16 +57,17 @@ header('Content-Type: text/html');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YaExpres - Inicio</title>
+    <title>YaExpres <?php echo $title ?> </title>
     <link rel="stylesheet" type="text/css" href="/file?type=css&file=bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/file?type=css&file=app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+    <link rel="shortcut icon" href="/image?image=logo-min.jpeg" type="image/x-icon">
 </head>
 
 <body>
-    <header>
-        <nav class="navbar nav navbar-expand-lg">
-            <div class="container-fluid">
+    <header <?php echo $home ? 'class="navbar-home"': '' ?>>
+        <nav class="navbar nav navbar-expand-lg" <?php echo $home ? 'data-bs-theme="dark"': '' ?>>
+            <div class="container-fluid text-light">
                 <a class="navbar-brand" href="/"> 
                 <img class="brand-logo" src="/image?image=logo-min.jpeg" alt="brand-logo">    
                 Conexion YaExpress</a>
@@ -93,4 +107,10 @@ header('Content-Type: text/html');
                 </div>
             </div>
         </nav>
+        <div class="nav-hide-text">
+            <div class="nav-hide-content">
+                <h3>Conexión Ya Express,  conectando sueños y metas.</h3>
+                <p>Aprenda a hacer trading con profesionales y haga que él dinero trabaje para usted</p>
+            </div>
+        </div>
     </header>

@@ -1,0 +1,65 @@
+@use 'base/variables' as v;
+
+.nav-hide-text {
+    display: none;
+}
+
+@media (min-width: 768px) {
+
+    .navbar-home {
+        background-image: url('/image?image=bdr.png');
+        
+        height: 30rem;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        display: flex;
+        flex-direction: column;
+        
+        .navbar {
+            //        padding-top: 5rem;
+            margin: 0 10rem;
+            //background-color: #ffffff7f;
+            
+            // * {
+                //     color:white;
+            // }
+            
+            .active {
+                font-weight: 700;
+            }
+        }
+        
+        .nav-hide-text {
+            display: block;
+            margin: 10rem;
+            
+            .nav-hide-content{
+                display: flex;
+                flex-direction: column;
+                text-align: end;
+            }
+            
+            h3 {
+                color:  v.$color_primary;
+                font-weight: 700;
+            }
+            
+            p {
+                color: white;
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 180px) {
+    .navbar-home {
+        background-color: v.$color_primary;
+    }
+}
+
+.navbar-brand {
+    font-weight: 700;
+}
+
