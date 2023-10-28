@@ -8,6 +8,7 @@ use Controller\PageController;
 use Controller\TestController;
 use Controller\UserController;
 use Controller\AdminController;
+use Controller\PremiumController;
 
 $router = new Router();
 
@@ -31,6 +32,11 @@ $router->addPost("/admin/post/add", [AdminController::class, 'addPosts']);
 $router->addGet("/admin/post/edit", [AdminController::class, 'editPosts']);
 $router->addPost("/admin/post/edit", [AdminController::class, 'editPosts']);
 $router->addGet("/admin/post/hide", [AdminController::class, 'hidePosts']);
+
+$router->addGet("/posts", [PageController::class, 'showPosts']);
+
+$router->addGet("/tradingexpress", [PageController::class, 'showPremiumPost']);
+// $router->addGet("/posts", [PageController::class, 'showPostsPremium']);
 // $router->addPost("/admin", [AdminController::class, 'index']);
 
  $router->addGet("/test", [TestController::class, 'list']);

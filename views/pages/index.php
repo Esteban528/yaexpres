@@ -1,5 +1,5 @@
 <main class="container">
-    <img class="img-fluid img-br mt-4" src="/image?image=YaExpresWallpaper.png">
+    <!-- <img class="img-fluid img-br mt-4" src="/image?image=YaExpresWallpaper.png"> -->
     
     
     <section class="container-fluid mt-4">

@@ -122,7 +122,7 @@ class AdminController {
                 if ($tempImageName) {
                     $imageName = md5( uniqid( rand(), true ) ) . ".jpg";
                     try {
-                        $image = Image::make($tempImageName)->fit(800,600);
+                        $image = Image::make($tempImageName);
                     } catch(ImageException $e){
                         $post->errors[] = "El formato o la imagen no pueden ser procesados";
                         // showFormat($e["message"], true);
@@ -190,7 +190,7 @@ class AdminController {
             if ($tempImageName) {
                 $imageName = md5( uniqid( rand(), true ) ) . ".jpg";
                 try {
-                    $image = Image::make($tempImageName)->fit(800,600);
+                    $image = Image::make($tempImageName);
                 } catch(ImageException $e){
                     $updatePost->errors[] = "El formato o la imagen no pueden ser procesados";
                     // showFormat($e["message"], true);
@@ -199,6 +199,8 @@ class AdminController {
                 
                 //
                 $updatePost->imagen = $imageName;
+            }else {
+                $updatePost->imagen = $oldImage ?? '';
             }
 
     
@@ -206,10 +208,11 @@ class AdminController {
             if ($result) {
                 if ($image) {
                     $image->save(IMAGE_DIR . $imageName);
+                    if ($oldImage)
+                        unlink(IMAGE_DIR . $oldImage);
                 }
                 //showFormat($oldImage, true);
-                if ($oldImage)
-                    unlink(IMAGE_DIR . $oldImage);
+
 
                 header('location: /admin/post');
             }

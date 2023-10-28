@@ -1,6 +1,7 @@
 <?php
 namespace Controller;
 
+use Model\Posts;
 use MVC\Router;
 
 class PageController {
@@ -74,5 +75,25 @@ class PageController {
         } else {
             echo 'Nombre de imagen no proporcionado';
         }
+    }
+
+    public static function showPosts (Router $router) {
+        $posts = Posts::all();
+
+        $router->render('pages/posts', [
+            'perm' => 1,
+            'posts' => $posts,
+            'actual' => 'posts',
+        ]);
+    }
+
+    public static function showPremiumPost (Router $router) {
+        $posts = Posts::all();
+
+        $router->render('pages/posts', [
+            'perm' => 2,
+            'posts' => $posts,
+            'actual' => 'premium',
+        ]);
     }
 }

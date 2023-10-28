@@ -13,6 +13,20 @@ $header = [
         'href' => '/',
     ],
     [
+        'title' => 'Publicaciones', 
+        'actual_key' => 'posts',
+        'minPermit' => 0,
+        'onlyPermit' => false,
+        'href' => '/posts',
+    ],
+    [
+        'title' => 'Trading Express', 
+        'actual_key' => 'premium',
+        'minPermit' => 1,
+        'onlyPermit' => false,
+        'href' => '/tradingexpress',
+    ],
+    [
         'title' => 'Iniciar sesión', 
         'actual_key' => 'login',
         'minPermit' => 0,
@@ -57,7 +71,7 @@ header('Content-Type: text/html');
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>YaExpres <?php echo $title ?> </title>
+    <title>YaExpres <?php echo $title ?? '' ?> </title>
     <link rel="stylesheet" type="text/css" href="/file?type=css&file=bootstrap.css">
     <link rel="stylesheet" type="text/css" href="/file?type=css&file=app.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">

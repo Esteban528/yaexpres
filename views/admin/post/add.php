@@ -28,7 +28,7 @@
 
                 <div class="mt-3 mb-3">
                 <label for="rankSelector" class="form-label">Seleccione que tipo de usuarios va a ver la publicacion    </label>
-                    <select id="rankSelector" class="form-select" name="user[permiso]" aria-label="Default select example">
+                    <select id="rankSelector" class="form-select" name="post[tipo]" aria-label="Que tipo de usuarios van a ver esta publicacion">
                         <?php foreach($ranks as $rank):
                             if (!in_array($rank->id,$showRanks))
                                 continue;
